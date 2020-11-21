@@ -11,7 +11,11 @@ class Navbar extends Component{
   clickHandler = () =>{
     this.setState({open: !this.state.open})
   }
+  logoutHandler = () =>{
+    this.props.userLogout()
+  }
   render(){
+    console.log(this.props.user)
     return(
       <div className="navbarcontainer">
       <div id="navbar">
@@ -23,8 +27,8 @@ class Navbar extends Component{
         </form>
 
         <div className="rightside">
-          <NavLink to="/login">Account</NavLink>
-          <NavLink to="/login">Login</NavLink>
+          {this.props.user.id!==undefined?<NavLink to="/account">Account</NavLink>:null}
+          {this.props.user.id!==undefined?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
         </div>
 
         <div className="burgermenu" onClick={this.clickHandler}>
@@ -32,16 +36,23 @@ class Navbar extends Component{
         </div>
       </div>
 
-      <div className={this.state.open? "menu open": "menu" } >
-        <NavLink to="/login" onClick={this.clickHandler}>Account</NavLink>
-        <NavLink to="/login" onClick={this.clickHandler}>Login</NavLink>
+      <div className={this.state.open? "menu open": "menu" } onClick={this.clickHandler}>
+        {this.props.user.id!==undefined?<NavLink to="/account">Account</NavLink>:null}
+        {this.props.user.id!==undefined?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
       </div>
       </div>
     )
   }
 }
-const msp = () =>{
-
+const msp = state =>{
+  return{
+    user: state.user
+  }
+}
+const mdp = dispatch =>{
+  return{
+    userLogout: ()=>dispatch({type:'USER_LOGOUT'})
+  }
 }
 
-export default connect(msp)(Navbar)
+export default connect(msp,mdp)(Navbar)

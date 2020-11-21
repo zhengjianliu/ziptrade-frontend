@@ -1,3 +1,4 @@
+@import "./loader.css";
 .App {
   text-align: center;
 }
@@ -247,6 +248,65 @@
 }
 
 
+/*account page*/
+.accountpage{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.accountleftside{
+  background-color: green;
+  width: 40%;
+  height: 100%;
+  text-align: left;
+  padding: 0px 2.5%;
+}
+
+.accountrightside{
+  background-color: red;
+  height: 100%;
+  right:0;
+  width: 60%;
+}
+
+.listing{
+  float: left;
+  height: 200px;
+  width: 100%;
+}
+
+.listing img{
+  height: 200px;
+}
+
+.listingleftside{
+  float: left;
+  width: 30%;
+}
+
+.listingrightside{
+  text-align: left;
+}
+
+.listingrightside h4{
+  margin: 6px;
+  font-size: 11pt;
+}
+
+.newlistingbutton{
+  position: fixed;
+  width: 220px;
+  padding: 7px 0px;
+  font-size: 17pt;
+  letter-spacing: 0px;
+  bottom: 30px;
+  right:30px;
+}
+.newlistingbutton:hover{
+  letter-spacing: 2px;
+}
+
 
 
 
@@ -309,5 +369,24 @@
   .open{
     opacity: 1;
     transform: translateY(20px) translateX(-20px);
+  }
+  /*account page*/
+  .accountpage{
+    display: block;
+  }
+  .accountleftside{
+    width: 100%;
+  }
+  .accountleftside h1{
+    margin: 0;
+  }
+  .accountleftside h3{
+    margin-bottom: 0;
+  }
+  .accountrightside{
+    width: 100%;
+  }
+  .accountrightside h1{
+    margin: 0;
   }
 }

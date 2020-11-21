@@ -37,10 +37,10 @@ class Login extends React.Component{
             })
           }else{
             console.log('failed to login')
-            // this.setState({
-            //   username: "",
-            //   password: ""
-            // })
+            this.setState({
+              username: "",
+              password:""
+            })
           }
         })
       }
@@ -57,7 +57,6 @@ class Login extends React.Component{
                     <button className="loginbutton" type="submit">Login</button>
                     <Link to="/signup"><button className="loginbutton signupbutton">SignUp</button></Link>
                 </form>
-                {}
             </div>
         )
     }

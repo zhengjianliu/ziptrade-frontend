@@ -1,6 +1,6 @@
 export default function rootreducer(state = {
   images: [],
-  user: []
+  user: {}
 }, action) {
     switch (action.type) {
   
@@ -8,8 +8,11 @@ export default function rootreducer(state = {
         console.log({images: state.images.concat(action.payload.images)})
         return {images: state.images.concat(action.payload.images)}
       case 'USER_LOGIN':
-        console.log({user: state.user.concat(action.payload.user)})
-        return {user: state.user.concat(action.payload.user)}
+        console.log({user:state.user})
+        return {user: action.payload.user}
+      case 'USER_LOGOUT':
+        console.log({user:state.user})
+        return {user:[],images:[]}
       default:
         return state;
   
