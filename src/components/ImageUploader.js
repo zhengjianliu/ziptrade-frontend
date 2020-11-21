@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux';
 
-export default class ImageUploader extends Component{
+class ImageUploader extends Component{
     state={
         images:[]
     }
@@ -32,16 +33,35 @@ export default class ImageUploader extends Component{
         )
     }
 
+    submitHandler = e =>{
+        e.preventDefault()
+        this.props.addImages(this.state)
+        this.setState({images:[]})
+    }
+
     render(){
         console.log(this.state.images)
         return (
             <div className="App">
+                <form onSubmit={event => this.submitHandler(event)}> 
                 <input type="file" onChange={this.onImageChange} className="uploadbutton" id="file"/>
                 <label for="file" class="uploadbutton" onChange={this.onImageChange} >Upload Images</label>
                 <br/>
+                
+                {this.state.images.length === 0 ? null:<button type="submit">Upload</button>}
+                
+                </form>
                 {this.previewImages()}
+                
             </div>
             
         );
     }
 }
+const mdp = dispatch =>{
+    return {
+        addImages: images=>dispatch({type:'UPLOAD_IMAGE', payload: images})
+    }
+}
+
+export default connect(null, mdp)(ImageUploader)

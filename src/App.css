@@ -1,45 +1,98 @@
 .App {
   text-align: center;
-  margin-top: 20px;
 }
-
 *{
   outline: none;
+  border: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/*Navbar*/
+
+.navbarcontainer{
+  position: sticky;
+  top:0;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#navbar{
+  height: 50px;
+  background-color:white;
+  position: sticky;
+  top: 0px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  z-index: 10000;
 }
 
-.App-link {
-  color: #61dafb;
+#navbar a{
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.leftside{
+  height: 50px;
+  padding: 0 20px;
+  padding-top: 10px;
+  font-size: 17pt;
+  font-weight: 700;
+  display: flex;
+}
+.rightside{
+  padding-top: 10px;
+  height: 50px;
+}
+.rightside a{
+  padding: 0px 20px;
+  font-size: 17pt;
+  font-weight: 700;
+}
+
+.burgermenu{
+  display:none;
+}
+
+.menu{
+  display:none;
+}
+
+.searchbar{
+  width: 100%;
+  display:flex;
+}
+.searchbar input{
+  width: 100%;
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding-left: 20px;
+  color: rgb(142, 142, 142);
+}
+
+
+/* homepage */
+
+.homepage{
+  height: 200vh;
+  background-color: green;
+}
+
+.homepage h1{
+  margin-top: 0;
+  
+  margin: 20px;
+}
+
+.item{
+  margin: 20px;
+  width: 200px;
+  float: left;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.itemimage{
+  height: 200px;
+  max-width: 200px;
 }
 
 
@@ -116,4 +169,145 @@
 .uploadbutton:hover{
   background-color:  rgb(44, 179, 44);
   color: white;
+}
+
+/*Login page*/
+.logincontainer{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logincontainer form{
+  width: 300px;
+  height: 260px;
+  position: fixed;
+  top: 30vh;
+}
+
+.logincontainer h3{
+  margin: 0;
+  padding:0;
+  font-size: 23pt;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.logincontainer input{
+  background-color: rgba(213, 213, 213, 0.714);
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 2px 0px;
+  padding-left: 15px;
+  font-size: 13pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  height: 25px;
+}
+
+.loginbutton{
+  border-radius: 20px;
+  font-size: 20pt;
+  width: 60%;
+  margin: auto;
+  padding: 3px 0px;
+  cursor: pointer;
+  background-color: rgb(0, 191, 0);
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: .5s;
+  color: white;
+}
+
+.loginbutton:hover{
+  letter-spacing: 5px;
+}
+
+.signupbutton{
+  margin-top: 10px;
+  background-color: rgb(255, 65, 65);
+}
+
+/*sign page*/
+.signupcontainer form{
+  width: 400px;
+}
+
+#city{
+  width: 50%;
+  margin-right: 10px;
+}
+
+#zipcode{
+  width: 25%;
+}
+
+
+
+
+
+@media only screen and (max-width: 980px) {
+  .rightside{
+    display:none;
+  }
+
+  .burgermenu{
+    display:block;
+    margin-top: 5px;
+    margin-right: 10px;
+    height: 40px;
+    width: 50px;
+    border-radius: 50%;
+    opacity: 0.6;
+    transition: .5s;
+    cursor: pointer;
+  }
+
+  .burgermenu:hover{
+    opacity: .9;
+    background-color: rgba(206, 206, 206, 0.5);
+  }
+
+  .burgermenu img{
+    margin-top: 5px;
+    height: 30px;
+  }
+
+  .menu{
+    width: 200px;
+    border-radius: 20px;
+    position: absolute;
+    display: block;
+    height: 135px;
+    background-color: white;
+    right: 0;
+    opacity: 0;
+    transition: .5s;
+    transform: translateY(-400px) translateX(-20px)scaleY(0);
+    z-index: 1;
+  }
+  .menu a{
+    width: 100%;
+    text-decoration: none;
+    padding: 20px 0px;
+    display: block;
+    font-size: 18pt;
+    font-weight: 700;
+    border-radius: 20px;
+    transition: .3s;
+  }
+  .menu a:hover{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: rgb(223, 223, 223);
+    letter-spacing: 2px;
+  }
+
+  .open{
+    opacity: 1;
+    transform: translateY(20px) translateX(-20px);
+  }
 }
