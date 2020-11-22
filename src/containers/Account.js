@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
 import { Favorite } from '@material-ui/icons'
 
-class Login extends React.Component{
+class Account extends React.Component{
     renderListings = (items) =>{
         return items.map(item=>
             <div className="listing">
@@ -71,4 +71,4 @@ const msp = state =>{
         user: state.user
     }
 }
-export default connect(msp)(Login)
+export default connect(msp)(Account)

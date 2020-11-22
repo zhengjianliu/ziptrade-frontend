@@ -1,7 +1,5 @@
 import './App.css';
 import React, {Component} from 'react'
-import ImageUploader from './components/ImageUploader'
-import Locator from './components/locator';
 import Navbar from './containers/Navbar'
 import Homepage from './containers/Homepage'
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
@@ -21,13 +19,18 @@ componentDidMount(){
     .then(resp => resp.json())
     .then(data=>this.setState({items:data}))
 }
+checkinguser = () =>{
+  if(this.props.user.id === undefined){
+    return <Redirect to="/" />
+  }
+}
   render(){
-    console.log(this.props.user)
+    
     return (
       <Router>
+        {this.checkinguser()}
         <div className="App">
           <Navbar/>
-          
           <Route exact path="/" render={()=> <Homepage items={this.state.items}/>}/>
           <Route exact path="/signup" render={()=> (this.props.user.id!==undefined? <Redirect to="/"/>:<Signup/>)}/>
           <Route path="/login" render={()=>(this.props.user.id!==undefined? <Redirect to="/"/>:<Login/>)}/>

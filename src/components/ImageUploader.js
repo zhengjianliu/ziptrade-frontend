@@ -10,7 +10,8 @@ class ImageUploader extends Component{
             let reader = new FileReader();
             reader.onload = (e) => {
                 e.preventDefault()
-            this.setState({images: [...this.state.images, e.target.result]});
+                this.setState({images: [...this.state.images, e.target.result]});
+                this.props.getImages(e.target.result)
             };
             reader.readAsDataURL(event.target.files[0]);
         }
@@ -20,6 +21,7 @@ class ImageUploader extends Component{
         let index = this.state.images.findIndex(image => image === imageLink)
         this.state.images.splice(index,1)
         this.setState({images: this.state.images})
+        this.props.imageDeleteHandler(this.state.images)
     }
 
     previewImages = () =>{
@@ -36,6 +38,7 @@ class ImageUploader extends Component{
     submitHandler = e =>{
         e.preventDefault()
         this.props.addImages(this.state)
+        this.props.getImages(this.state)
         this.setState({images:[]})
     }
 
@@ -48,7 +51,7 @@ class ImageUploader extends Component{
                 <label for="file" class="uploadbutton" onChange={this.onImageChange} >Upload Images</label>
                 <br/>
                 
-                {this.state.images.length === 0 ? null:<button type="submit">Upload</button>}
+                {/* {this.state.images.length === 0 ? null:<button type="submit">Upload</button>} */}
                 
                 </form>
                 {this.previewImages()}
