@@ -48,6 +48,7 @@ class Homepage extends React.Component{
         return(
             <section>
             <div className="homepage">
+                <Loader/>
                 {this.renderData()}
             </div>
             
