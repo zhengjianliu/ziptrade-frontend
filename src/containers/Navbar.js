@@ -23,7 +23,7 @@ class Navbar extends Component{
           <NavLink to="/">Home</NavLink>
         </div>
         <form className="searchbar">
-          <input type="text" name="searchbar" placeholder="Search..."/>
+          <input type="text" name="searchbar" placeholder="Search..." onChange={this.props.searchHandler}/>
         </form>
 
         <div className="rightside">

@@ -11,27 +11,42 @@ import Newlisting from './containers/Newlisting'
 
 class App extends Component{
   state={
-    items:[]
+    searchterm:"",
+    items:[],
 }
 
-componentDidMount(){
-    fetch('http://localhost:3000/items')
-    .then(resp => resp.json())
-    .then(data=>this.setState({items:data}))
-}
-checkinguser = () =>{
-  if(this.props.user.id === undefined){
-    return <Redirect to="/" />
+  componentDidMount(){
+      fetch('http://localhost:3000/items')
+      .then(resp => resp.json())
+      .then(data=>this.setState({items:data}))
   }
-}
+  checkinguser = () =>{
+    if(this.props.user.id === undefined){
+      return <Redirect to="/" />
+    }
+  }
+
+  filterItem = ()=>{
+    if (this.state.searchterm === ""){
+      return this.state.items
+    }else{
+      return this.state.items.filter(item=>item.name.toUpperCase().includes(this.state.searchterm.toUpperCase()) || item.category.toUpperCase().includes(this.state.searchterm.toUpperCase()))
+    }
+  }
+
+  searchHandler = e =>{
+    e.preventDefault()
+    this.setState({searchterm: e.target.value})
+  }
+
   render(){
     
     return (
       <Router>
         {this.checkinguser()}
         <div className="App">
-          <Navbar/>
-          <Route exact path="/" render={()=> <Homepage items={this.state.items}/>}/>
+          <Navbar searchHandler={this.searchHandler}/>
+          <Route exact path="/" render={()=> <Homepage items={this.filterItem()}/>}/>
           <Route exact path="/signup" render={()=> (this.props.user.id!==undefined? <Redirect to="/"/>:<Signup/>)}/>
           <Route path="/login" render={()=>(this.props.user.id!==undefined? <Redirect to="/"/>:<Login/>)}/>
           <Route path="/account" render={()=> <Account items={this.state.items}/>}/>

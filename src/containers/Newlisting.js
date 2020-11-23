@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ImageUploader from '../components/ImageUploader'
 import {connect} from 'react-redux'
-
+import {Redirect} from 'react-router-dom'
 class Newlisting extends Component{
     state={
         name:"",
@@ -23,6 +23,31 @@ class Newlisting extends Component{
     imageDeleteHandler = (images)=>{
         this.setState({images:images})
     }
+
+    submitHandler = e =>{
+        e.preventDefault()
+        const options ={
+            method: "POST",
+            headers: {
+              "content-type":"application/json",
+              "accept":"application/json"
+            },
+            body: JSON.stringify({
+                name: this.state.name,
+                category: this.state.category,
+                ownerId: this.props.user.id,
+                price: this.state.price,
+                description: this.state.description,
+                condition: this.state.condition,
+                images: this.state.images
+            })
+          }
+        fetch('http://localhost:3000/items',options)
+        .then(resp=>resp.json())
+        // .then(_newlisting=>{
+        // })
+        return <Redirect to="/"/>
+    }
     render(){
         console.log(this.state)
         return(
@@ -36,7 +61,7 @@ class Newlisting extends Component{
                 </div>
 
                 <div className="accountrightside">
-                    <form id="newlisitingform">
+                    <form id="newlisitingform" onSubmit={this.submitHandler}>
                         <label className="labelname">Product Name: </label>
                         <br/>
                         <input className="inputbox" type="text" name="name" placeholder="Product Name" value={this.state.name} onChange={this.changeHandler} required/>
@@ -83,10 +108,15 @@ class Newlisting extends Component{
         )
     }
 }
+
 const msp = state =>{
-    return {
-        images: state.images
+    return{
+        user:state.user
     }
 }
+const mdp = dispatch =>{
+    return{
 
-export default connect(msp)(Newlisting)
+    }
+}
+export default connect(msp,mdp)(Newlisting)

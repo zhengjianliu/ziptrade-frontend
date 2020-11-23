@@ -13,6 +13,8 @@ export default function rootreducer(state = {
       case 'USER_LOGOUT':
         console.log({user:state.user})
         return {user:[],images:[]}
+      // case 'CREATE_NEWLISTING':
+      //   return {}
       default:
         return state;
   
