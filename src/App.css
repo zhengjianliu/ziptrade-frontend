@@ -83,7 +83,7 @@
 .homepage{
   width: auto;
   height: 200vh;
-  background-color: green;
+  background-color: lightgrey;
 }
 
 .homepage h1{
@@ -99,6 +99,11 @@
   background-color: white;
   border-radius: 20px;
   cursor: pointer;
+  transition:.5s;
+}
+.item:hover{
+  transform: scale(1.03);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .item h3,.item h2{

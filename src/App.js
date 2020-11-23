@@ -30,7 +30,7 @@ class App extends Component{
     if (this.state.searchterm === ""){
       return this.state.items
     }else{
-      return this.state.items.filter(item=>item.name.toUpperCase().includes(this.state.searchterm.toUpperCase()) || item.category.toUpperCase().includes(this.state.searchterm.toUpperCase()))
+      return this.state.items.filter(item=>item.name.toUpperCase().includes(this.state.searchterm.toUpperCase()) || item.category.toUpperCase().includes(this.state.searchterm.toUpperCase()) || item.condition.toUpperCase().includes(this.state.searchterm.toUpperCase()) )
     }
   }
 

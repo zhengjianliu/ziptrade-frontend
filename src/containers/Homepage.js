@@ -8,6 +8,7 @@ class Homepage extends React.Component{
         currentItem:[],
         show:false,
         fullscreen:false,
+        seller:[]
     }
     renderData = () =>{
         return this.props.items.map((item,index)=><Item item={item} clickHandler={this.clickHandler}/>)
@@ -47,7 +48,6 @@ class Homepage extends React.Component{
         return(
             <section>
             <div className="homepage">
-                <Loader/>
                 {this.renderData()}
             </div>
             
