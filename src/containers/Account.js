@@ -3,11 +3,18 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
 import { Favorite } from '@material-ui/icons'
+import Showpage from './Showpage'
 
 class Account extends React.Component{
+    state={
+        show:false,
+        fullscreen:false,
+        seller:[],
+        currentItem:[]
+    }
     renderListings = (items) =>{
         return items.map(item=>
-            <div className="listing">
+            <div className="listing" onClick={()=>this.clickHandler(item)} style={{cursor:"pointer"}}>
                 <div className="listingleftside">
                     <img src={item.images[0]}/>
                 </div>
@@ -35,8 +42,34 @@ class Account extends React.Component{
         })
         return favorites
     }
+    clickHandler = (item)=>{
+        if(this.state.currentItem.id === item.id){
+            this.setState({currentItem:item, show:!this.state.show})
+        }else{
+            this.setState({currentItem:item, show:true})
+        }
+
+        fetch('http://localhost:3000/users')
+        .then(resp=>resp.json())
+        .then(users=>{
+            if(users){
+                let seller = users.find(user=>user.id === this.state.currentItem.ownerId)
+                this.setState({seller:seller})
+            }
+        })
+        
+    }
+    closeHandler=()=>{
+        this.setState({show:false,currentItem:[],fullscreen:false})
+    }
+    fullscreenHandler=()=>{
+        this.setState({fullscreen:!this.state.fullscreen})
+    }
     render(){
+        console.log(this.props.user)
         return(
+            <>
+            {this.props.user.id!== undefined?
             <div className="accountpage">
                 <div className="accountleftside">
                     <h1>Account Info: </h1>
@@ -60,9 +93,23 @@ class Account extends React.Component{
                     <br/>
                     {this.renderListings(this.props.user.items)}
                     <h1>Favorites:</h1>
-                    {this.renderListings(this.renderFavorites())}
+                    <div className="listingcontainer">
+                        {this.renderListings(this.renderFavorites())}
+                    </div>
                 </div>
+                <Showpage 
+                currentItem={this.state.currentItem}
+                show={this.state.show}
+                fullscreen={this.state.fullscreen}
+                seller={this.state.seller}
+                fullscreenHandler = {this.fullscreenHandler}
+                closeHandler={this.closeHandler}
+                />
             </div>
+            :
+            null
+            }
+            </>
         )
     }
 }

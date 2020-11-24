@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import ImageUploader from '../components/ImageUploader'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect,withRouter} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 class Newlisting extends Component{
     state={
         name:"",
@@ -29,8 +30,8 @@ class Newlisting extends Component{
         const options ={
             method: "POST",
             headers: {
-              "content-type":"application/json",
-              "accept":"application/json"
+                "content-type":"application/json",
+                "accept":"application/json"
             },
             body: JSON.stringify({
                 name: this.state.name,
@@ -41,12 +42,13 @@ class Newlisting extends Component{
                 condition: this.state.condition,
                 images: this.state.images
             })
-          }
+        }
         fetch('http://localhost:3000/items',options)
         .then(resp=>resp.json())
-        // .then(_newlisting=>{
-        // })
-        return <Redirect to="/"/>
+        .then(newlisting=>{
+            this.props.updateItems(newlisting)
+        })
+        this.props.history.push('/')
     }
     render(){
         console.log(this.state)
@@ -61,7 +63,7 @@ class Newlisting extends Component{
                 </div>
 
                 <div className="accountrightside">
-                    <form id="newlisitingform" onSubmit={this.submitHandler}>
+                    <form id="newlisitingform" onSubmit={this.submitHandler.bind(this)}>
                         <label className="labelname">Product Name: </label>
                         <br/>
                         <input className="inputbox" type="text" name="name" placeholder="Product Name" value={this.state.name} onChange={this.changeHandler} required/>
@@ -75,7 +77,7 @@ class Newlisting extends Component{
                         <label for="category" className="labelname">Choose a Category: </label>
                         <br/>
                         <select className="inputbox" name="category" id="category" form="newlisitingform" value={this.state.category} onChange={this.changeHandler} required>
-                            <option value="">...</option>
+                            <option value="">Choose a category</option>
                             <option value="electronic">Electronic</option>
                             <option value="smartphone">Smart Phone</option>
                             <option value="laptop">Laptop</option>
@@ -91,6 +93,7 @@ class Newlisting extends Component{
                         <label for="condition" className="labelname">Condition: </label>
                         <br/>
                         <select className="inputbox" name="condition" id="condition" form="newlisitingform" value={this.state.condition} onChange={this.changeHandler} required>
+                            <option value="">Choose a condition</option>
                             <option value="new">New</option>
                             <option value="mint">Mint</option>
                             <option value="good">Good</option>
@@ -101,7 +104,16 @@ class Newlisting extends Component{
                         <label className="labelname">Description: </label>
                         <br/>
                         <textarea className="inputarea" type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler} required/>
+                        {this.state.name!=="" &&
+                            this.state.category!==""&& 
+                            this.state.price!=="" &&
+                            this.state.condition!==""&&
+                            this.state.description!==""&&
+                            this.state.images.length!==0?
                         <button type="submit" className="loginbutton">Create</button>
+                        :
+                        null
+                        }
                     </form>
                 </div>
             </div>
@@ -119,4 +131,4 @@ const mdp = dispatch =>{
 
     }
 }
-export default connect(msp,mdp)(Newlisting)
+export default connect(msp,mdp)(withRouter(Newlisting))

@@ -45,17 +45,15 @@ class ImageUploader extends Component{
     render(){
         console.log(this.state.images)
         return (
-            <div className="App">
+            <div className="imageuploader">
                 <form onSubmit={event => this.submitHandler(event)}> 
                 <input type="file" onChange={this.onImageChange} className="uploadbutton" id="file"/>
                 <label for="file" class="uploadbutton" onChange={this.onImageChange} >Upload Images</label>
                 <br/>
-                
-                {/* {this.state.images.length === 0 ? null:<button type="submit">Upload</button>} */}
-                
+                <div className="preview">
+                    {this.previewImages()}
+                </div>
                 </form>
-                {this.previewImages()}
-                
             </div>
             
         );

@@ -14,7 +14,7 @@ export default function rootreducer(state = {
         console.log({user:state.user})
         return {user:[],images:[]}
       // case 'CREATE_NEWLISTING':
-      //   return {}
+      //   return {user.}
       default:
         return state;
   

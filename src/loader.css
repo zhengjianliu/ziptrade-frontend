@@ -5,7 +5,7 @@
   top:0;
   left:0;
   background: rgb(34, 34, 34);
-  animation: fade .5s forwards;
+  animation: fade 10s forwards;
   animation-iteration-count: 1;
   justify-content: center;
   align-items: center;
