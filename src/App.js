@@ -51,7 +51,7 @@ class App extends Component{
         {this.checkinguser()}
         <div className="App">
           <Navbar searchHandler={this.searchHandler}/>
-          <Route exact path="/" render={()=> <Homepage items={this.filterItem()}/>}/>
+          <Route exact path="/" render={()=> <Homepage items={this.filterItem()} searchterm={this.state.searchterm}/>}/>
           <Route exact path="/signup" render={()=> (this.props.user.id!==undefined? <Redirect to="/"/>:<Signup/>)}/>
           <Route path="/login" render={()=>(this.props.user.id!==undefined? <Redirect to="/"/>:<Login/>)}/>
           <Route path="/account" render={()=> <Account items={this.state.items} newItem={this.state.newItem}/>}/>

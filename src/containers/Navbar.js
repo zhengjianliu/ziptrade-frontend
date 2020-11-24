@@ -22,7 +22,7 @@ class Navbar extends Component{
         <div className="leftside">
           <NavLink to="/">Home</NavLink>
         </div>
-        <form className="searchbar">
+        <form className="searchbar" onSubmit={(e)=>{ e.preventDefault()}}>
           <input type="text" name="searchbar" placeholder="Search..." onChange={this.props.searchHandler}/>
         </form>
 

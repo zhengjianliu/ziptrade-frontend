@@ -37,12 +37,20 @@ class Homepage extends React.Component{
     fullscreenHandler=()=>{
         this.setState({fullscreen:!this.state.fullscreen})
     }
+    renderLoader = () =>{
+        if(this.props.items.length===0){
+            if(this.props.searchterm===""){
+                return <Loader/>
+            }
+        }
+    }
 
     render(){
+        console.log(this.props.searchterm)
         return(
             <section>
             <div className="homepage">
-                {this.props.items.length===0?<Loader/>:null}
+                {this.renderLoader()}
                 {this.renderData()}
             </div>
             <Showpage 
