@@ -21,17 +21,14 @@ class App extends Component{
       .then(resp => resp.json())
       .then(data=>this.setState({items:data}))
   }
-  checkinguser = () =>{
-    if(this.props.user.id === undefined){
-      return <Redirect to="/" />
-    }
-  }
-
   filterItem = ()=>{
     if (this.state.searchterm === ""){
       return this.state.items
     }else{
-      return this.state.items.filter(item=>item.name.toUpperCase().includes(this.state.searchterm.toUpperCase()) || item.category.toUpperCase().includes(this.state.searchterm.toUpperCase()) || item.condition.toUpperCase().includes(this.state.searchterm.toUpperCase()) )
+      return this.state.items.filter(
+        item=>item.name.toUpperCase().includes(this.state.searchterm.toUpperCase())
+      || item.category.toUpperCase().includes(this.state.searchterm.toUpperCase())
+      || item.condition.toUpperCase().includes(this.state.searchterm.toUpperCase()) )
     }
   }
 
@@ -44,8 +41,13 @@ class App extends Component{
     this.setState({items:[...this.state.items, item],newItem:item})
   }
 
+  checkinguser = () =>{
+    if(this.props.loggedin===false){
+      return <Redirect to="/" />
+    }
+  }
+
   render(){
-    
     return (
       <Router>
         {this.checkinguser()}
@@ -53,7 +55,7 @@ class App extends Component{
           <Navbar searchHandler={this.searchHandler}/>
           <Route exact path="/" render={()=> <Homepage items={this.filterItem()} searchterm={this.state.searchterm}/>}/>
           <Route exact path="/signup" render={()=> (this.props.user.id!==undefined? <Redirect to="/"/>:<Signup/>)}/>
-          <Route path="/login" render={()=>(this.props.user.id!==undefined? <Redirect to="/"/>:<Login/>)}/>
+          <Route path="/login" render={()=>(this.props.loggedin? <Redirect to="/"/>:<Login/>)}/>
           <Route path="/account" render={()=> <Account items={this.state.items} newItem={this.state.newItem}/>}/>
           <Route path="/newlisting" render={()=> <Newlisting updateItems={this.updateItems}/>}/>
         </div>
@@ -64,7 +66,8 @@ class App extends Component{
 
 const msp = state =>{
   return {
-    user: state.user
+    user: state.user,
+    loggedin: state.loggedin
   }
 }
 

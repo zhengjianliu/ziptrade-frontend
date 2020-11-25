@@ -10,7 +10,7 @@ class Showpage extends React.Component{
                     <img src={arrowup}/>
                 </div>
                 <button className="closebutton" onClick={this.props.closeHandler}>X</button>
-                
+
                 <div className="fullleftside">
                     <img onClick={this.props.fullscreenHandler} style={{cursor:"pointer"}}className="itemimage"src={this.props.currentItem.length!==0?this.props.currentItem.images[0]:""}/>
                     <h3>Product Name: {this.props.currentItem.name}</h3>
@@ -24,21 +24,20 @@ class Showpage extends React.Component{
                     <div className="fullrightside">
                         <h2>This is your listing:</h2>
                         <hr/>
-                        <h3>Your Name: {this.props.seller.fullname}</h3>
+                        <h3>Your Name: {this.props.user.fullname}</h3>
                         <h3>Contact Info: </h3>
-                        {this.props.seller.displayphone?<h4>Phone: {this.props.seller.phone}</h4>:null}
-                        <h4>Email: {this.props.seller.email}</h4>
+                        {this.props.user.displayphone?<h4>Phone: {this.props.user.phone}</h4>:null}
+                        <h4>Email: {this.props.user.email}</h4>
                     </div>
                     :
                     <div className="fullrightside">
                         <h2>Seller's Info:</h2>
                         <hr/>
-                        <h3>Seller's Name: {this.props.seller.fullname}</h3>
+                        <h3>Seller's Name: {this.props.currentItem.owner.fullname}</h3>
                         <h3>Contact Info: </h3>
-                        {this.props.seller.displayphone?<h4>Phone: {this.props.seller.phone}</h4>:null}
-                        <h4>Email: {this.props.seller.email}</h4>
+                        {this.props.currentItem.owner.displayphone?<h4>Phone: {this.props.currentItem.owner.phone}</h4>:null}
+                        <h4>Email: {this.props.currentItem.owner.email}</h4>
                         <div className="sellerstore">
-                            {this.props.currentItem.ownerId}
                         </div>
                     </div>
                     :

@@ -1,22 +1,27 @@
-export default function rootreducer(state = {
-  images: [],
-  user: {}
-}, action) {
-    switch (action.type) {
-  
-      case 'UPLOAD_IMAGE':
-        console.log({images: state.images.concat(action.payload.images)})
-        return {images: state.images.concat(action.payload.images)}
-      case 'USER_LOGIN':
-        console.log({user:state.user})
-        return {user: action.payload.user}
-      case 'USER_LOGOUT':
-        console.log({user:state.user})
-        return {user:[],images:[]}
-      // case 'CREATE_NEWLISTING':
-      //   return {user.}
-      default:
-        return state;
-  
-    }
-  };
+const initialState = {
+  user: {},
+  items: [],
+  favorites: [],
+  loggedin: false
+}
+export default function rootreducer(state = initialState, action) {
+  switch (action.type) {
+    case 'USER_LOGIN':
+      return {
+        user: action.payload.user,
+        items: action.payload.user.items,
+        favorites: action.payload.user.favorites,
+        loggedin: true
+      }
+    case 'USER_LOGOUT':
+      return {
+        user: {},
+        loggedin:false
+      }
+    case 'ADD_ITEM':
+      console.log({...state, items: [...state.items, action.data]})
+      return {...state, items: [...state.items, action.data]}
+    default:
+      return state;
+  }
+};

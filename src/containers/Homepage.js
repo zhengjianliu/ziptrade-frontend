@@ -8,7 +8,6 @@ class Homepage extends React.Component{
     state={
         show:false,
         fullscreen:false,
-        seller:[],
         currentItem:[]
     }
     renderData = () =>{
@@ -20,16 +19,6 @@ class Homepage extends React.Component{
         }else{
             this.setState({currentItem:item, show:true})
         }
-
-        fetch('http://localhost:3000/users')
-        .then(resp=>resp.json())
-        .then(users=>{
-            if(users){
-                let seller = users.find(user=>user.id === this.state.currentItem.ownerId)
-                this.setState({seller:seller})
-            }
-        })
-        
     }
     closeHandler=()=>{
         this.setState({show:false,currentItem:[],fullscreen:false})
@@ -53,11 +42,10 @@ class Homepage extends React.Component{
                 {this.renderLoader()}
                 {this.renderData()}
             </div>
-            <Showpage 
+            <Showpage
             currentItem={this.state.currentItem}
             show={this.state.show}
             fullscreen={this.state.fullscreen}
-            seller={this.state.seller}
             fullscreenHandler = {this.fullscreenHandler}
             closeHandler={this.closeHandler}
             />

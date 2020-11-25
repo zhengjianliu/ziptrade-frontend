@@ -27,8 +27,8 @@ class Navbar extends Component{
         </form>
 
         <div className="rightside">
-          {this.props.user.id!==undefined?<NavLink to="/account">Account</NavLink>:null}
-          {this.props.user.id!==undefined?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
+          {this.props.loggedin?<NavLink to="/account">Account</NavLink>:null}
+          {this.props.loggedin?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
         </div>
 
         <div className="burgermenu" onClick={this.clickHandler}>
@@ -37,8 +37,8 @@ class Navbar extends Component{
       </div>
 
       <div className={this.state.open? "menu open": "menu" } onClick={this.clickHandler}>
-        {this.props.user.id!==undefined?<NavLink to="/account">Account</NavLink>:null}
-        {this.props.user.id!==undefined?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
+        {this.props.loggedin?<NavLink to="/account">Account</NavLink>:null}
+        {this.props.loggedin?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
       </div>
       </div>
     )
@@ -46,7 +46,8 @@ class Navbar extends Component{
 }
 const msp = state =>{
   return{
-    user: state.user
+    user: state.user,
+    loggedin: state.loggedin
   }
 }
 const mdp = dispatch =>{

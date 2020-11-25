@@ -46,7 +46,9 @@ class Newlisting extends Component{
         fetch('http://localhost:3000/items',options)
         .then(resp=>resp.json())
         .then(newlisting=>{
+            console.log(newlisting)
             this.props.updateItems(newlisting)
+            this.props.addItem(newlisting)
         })
         this.props.history.push('/')
     }
@@ -105,7 +107,7 @@ class Newlisting extends Component{
                         <br/>
                         <textarea className="inputarea" type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler} required/>
                         {this.state.name!=="" &&
-                            this.state.category!==""&& 
+                            this.state.category!==""&&
                             this.state.price!=="" &&
                             this.state.condition!==""&&
                             this.state.description!==""&&
@@ -128,7 +130,7 @@ const msp = state =>{
 }
 const mdp = dispatch =>{
     return{
-
+      addItem: newItem => dispatch({type:'ADD_ITEM', data: newItem})
     }
 }
 export default connect(msp,mdp)(withRouter(Newlisting))

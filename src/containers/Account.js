@@ -9,7 +9,6 @@ class Account extends React.Component{
     state={
         show:false,
         fullscreen:false,
-        seller:[],
         currentItem:[]
     }
     renderListings = (items) =>{
@@ -18,15 +17,12 @@ class Account extends React.Component{
                 <div className="listingleftside">
                     <img src={item.images[0]}/>
                 </div>
-
                 <div className="listingrightside">
                     <h4>Product Name: {item.name.toUpperCase()}</h4>
                     <h4>Category: {item.category}</h4>
                     <h4>Price: {item.price}</h4>
                     <h4>Condition: {item.condition}</h4>
-                    <h4>Available: {item.available?"Yes":"no"}</h4>
-                    <h4>Visiable: {item.visiable?"Yes":null}</h4>
-                    <h4>Created At: {item.created_at}</h4>
+                    <h4>Available: {item.available?"Yes":"No"}</h4>
                 </div>
             </div>
         )
@@ -48,16 +44,6 @@ class Account extends React.Component{
         }else{
             this.setState({currentItem:item, show:true})
         }
-
-        fetch('http://localhost:3000/users')
-        .then(resp=>resp.json())
-        .then(users=>{
-            if(users){
-                let seller = users.find(user=>user.id === this.state.currentItem.ownerId)
-                this.setState({seller:seller})
-            }
-        })
-        
     }
     closeHandler=()=>{
         this.setState({show:false,currentItem:[],fullscreen:false})
@@ -66,7 +52,7 @@ class Account extends React.Component{
         this.setState({fullscreen:!this.state.fullscreen})
     }
     render(){
-        console.log(this.props.user)
+      console.log(this.props.user, this.props.userItems, this.props.userFavorites)
         return(
             <>
             {this.props.user.id!== undefined?
@@ -85,23 +71,22 @@ class Account extends React.Component{
                     <br/>
                     <br/>
                 </div>
-            
+
                 <div className="accountrightside">
                     <Link to="/newlisting"><button className="loginbutton newlistingbutton">+ New Listing</button></Link>
                     <h1>Listings:</h1>
                     <br/>
                     <br/>
-                    {this.renderListings(this.props.user.items)}
+                    {this.renderListings(this.props.userItems)}
                     <h1>Favorites:</h1>
                     <div className="listingcontainer">
                         {this.renderListings(this.renderFavorites())}
                     </div>
                 </div>
-                <Showpage 
+                <Showpage
                 currentItem={this.state.currentItem}
                 show={this.state.show}
                 fullscreen={this.state.fullscreen}
-                seller={this.state.seller}
                 fullscreenHandler = {this.fullscreenHandler}
                 closeHandler={this.closeHandler}
                 />
@@ -115,7 +100,9 @@ class Account extends React.Component{
 }
 const msp = state =>{
     return{
-        user: state.user
+        user: state.user,
+        userItems: state.items,
+        userFavorites: state.favorites,
     }
 }
 export default connect(msp)(Account)
