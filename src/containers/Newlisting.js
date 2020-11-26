@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import ImageUploader from '../components/ImageUploader'
 import {connect} from 'react-redux'
-import {Redirect,withRouter} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
+import {withRouter} from 'react-router-dom'
 class Newlisting extends Component{
     state={
         name:"",
@@ -46,14 +45,12 @@ class Newlisting extends Component{
         fetch('http://localhost:3000/items',options)
         .then(resp=>resp.json())
         .then(newlisting=>{
-            console.log(newlisting)
             this.props.updateItems(newlisting)
             this.props.addItem(newlisting)
         })
         this.props.history.push('/')
     }
     render(){
-        console.log(this.state)
         return(
             <div className="accountpage">
                 <div className="accountleftside">

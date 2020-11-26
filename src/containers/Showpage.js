@@ -3,22 +3,53 @@ import arrowup from '../images/arrowup.png'
 import {connect} from 'react-redux'
 
 class Showpage extends React.Component{
+
+  itemLikefilter = item =>{
+     return this.props.userFavorites.find(favoritedItem=>favoritedItem.id===item.id)
+  }
+  likeHandler = item =>{
+    if(!this.itemLikefilter(item)){
+      const options = {
+        method: "POST",
+        headers:{
+          accepts: "application/json",
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({
+          user_id: this.props.user.id,
+          item_id: item.id
+        })
+      }
+      fetch('http://localhost:3000/favorites',options)
+      .then(resp=>resp.json())
+      .then(_data=>{
+        this.props.likeItem(item)
+      })
+    }
+  }
     render(){
+      console.log(this.props.currentItem, this.props.userFavorites)
         return(
             <div id={this.props.fullscreen?"fullshowpage":"showpage"} className={this.props.show?"show":null}>
                 <div className="arrowup" onClick={this.props.fullscreenHandler}>
-                    <img src={arrowup}/>
+                    <img src={arrowup} alt="arrowup"/>
                 </div>
                 <button className="closebutton" onClick={this.props.closeHandler}>X</button>
 
                 <div className="fullleftside">
-                    <img onClick={this.props.fullscreenHandler} style={{cursor:"pointer"}}className="itemimage"src={this.props.currentItem.length!==0?this.props.currentItem.images[0]:""}/>
+                    <img onClick={this.props.fullscreenHandler}
+                      style={{cursor:"pointer"}}
+                      className="itemimage"
+                      alt={this.props.currentItem.name}
+                      src={this.props.currentItem.length!==0?this.props.currentItem.images[0]:""}/>
+                    {this.props.loggedin?<button onClick={()=>this.likeHandler(this.props.currentItem)}>Like</button>:null}
                     <h3>Product Name: {this.props.currentItem.name}</h3>
                     <h4>Price: ${this.props.currentItem.price}</h4>
                     <h4>Condition: {this.props.currentItem.condition}</h4>
                     <h4>Category: {this.props.currentItem.category}</h4>
                     <h4>Description: {this.props.currentItem.description}</h4>
                 </div>
+
                 {this.props.fullscreen?
                     this.props.currentItem.ownerId === this.props.user.id?
                     <div className="fullrightside">
@@ -50,8 +81,14 @@ class Showpage extends React.Component{
 
 const msp = state =>{
     return {
-        user: state.user
+        user: state.user,
+        loggedin: state.loggedin,
+        userFavorites: state.favorites
     }
 }
-
-export default connect(msp)(Showpage)
+const mdp = dispatch =>{
+  return {
+    likeItem: likeditem => dispatch({type:'ADD_FAVORITE', data:likeditem })
+  }
+}
+export default connect(msp,mdp)(Showpage)

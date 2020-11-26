@@ -15,7 +15,6 @@ class Navbar extends Component{
     this.props.userLogout()
   }
   render(){
-    console.log(this.props.user)
     return(
       <div className="navbarcontainer">
       <div id="navbar">
@@ -32,7 +31,7 @@ class Navbar extends Component{
         </div>
 
         <div className="burgermenu" onClick={this.clickHandler}>
-          <img src={menu} />
+          <img src={menu} alt="menu icon"/>
         </div>
       </div>
 

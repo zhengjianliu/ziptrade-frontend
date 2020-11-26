@@ -35,7 +35,7 @@ class Homepage extends React.Component{
     }
 
     render(){
-        console.log(this.props.searchterm)
+      console.log(this.state.currentItem)
         return(
             <section>
             <div className="homepage">

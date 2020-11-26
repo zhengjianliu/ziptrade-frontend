@@ -13,7 +13,7 @@ class Signup extends React.Component{
         phone:"",
         email:""
       }
-    
+
       changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
       }
@@ -23,13 +23,13 @@ class Signup extends React.Component{
         .then(resp => resp.json())
         .then(result =>{
           this.setState({
-            
+
             zipcode: result.zip_code,
             city: result.city
           })
         })
       }
-    
+
       submitHandler = (e) => {
         e.preventDefault()
         this.signupHandler(this.state)
@@ -73,8 +73,8 @@ class Signup extends React.Component{
                     <input type="password" name="password" placeholder="password" onChange={this.changeHandler} value={this.state.password} required/>
                     <input type="text" name="address" placeholder="address" value={this.state.address} onChange={this.changeHandler} required/>
                     <input type="text" id="city" name="city" placeholder="city" value={this.state.city} onChange={this.changeHandler} required/>
-                    <input type="text" id="zipcode" name="zipcode" placeholder="zipcode" value={this.state.zipcode} onChange={this.changeHandler} required/> 
-                    <img className="locator"src={Locator} onClick={this.locator}/>
+                    <input type="text" id="zipcode" name="zipcode" placeholder="zipcode" value={this.state.zipcode} onChange={this.changeHandler} required/>
+                    <img className="locator"src={Locator} onClick={this.locator} alt="location helper"/>
                     <input type="phone" name="phone"  pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="phone format 1234567890" value={this.state.phone} onChange={this.changeHandler} required/>
                     <input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required/>
                     <button className="loginbutton" type="submit">Register</button>

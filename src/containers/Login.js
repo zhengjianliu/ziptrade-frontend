@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import { Route, Redirect } from 'react-router'
 
 class Login extends React.Component{
     state = {
@@ -12,21 +11,22 @@ class Login extends React.Component{
       changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
       }
-    
+
       submitHandler = (e) => {
         e.preventDefault()
         this.loginHandler(this.state)
       }
 
       loginHandler = (userInfo) =>{
-        fetch("http://localhost:3000/login",{
+        const options={
           method: "POST",
           headers:{
             accepts: "application/json",
             "content-type": "application/json"
           },
           body: JSON.stringify({user: userInfo})
-        })
+        }
+        fetch("http://localhost:3000/login",options)
         .then(resp=>resp.json())
         .then(data=>{
           if(data.user){

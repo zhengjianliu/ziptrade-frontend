@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import { Route, Redirect } from 'react-router'
-import { Favorite } from '@material-ui/icons'
 import Showpage from './Showpage'
 
 class Account extends React.Component{
@@ -15,7 +13,7 @@ class Account extends React.Component{
         return items.map(item=>
             <div className="listing" onClick={()=>this.clickHandler(item)} style={{cursor:"pointer"}}>
                 <div className="listingleftside">
-                    <img src={item.images[0]}/>
+                    <img src={item.images[0]} alt={item.name}/>
                 </div>
                 <div className="listingrightside">
                     <h4>Product Name: {item.name.toUpperCase()}</h4>
@@ -26,17 +24,6 @@ class Account extends React.Component{
                 </div>
             </div>
         )
-    }
-    renderFavorites = () =>{
-        let favorites = []
-        this.props.items.forEach(item=>{
-            this.props.user.favorites.forEach(favorite=>{
-                if(item.id === favorite.item_id){
-                    favorites.push(item)
-                }
-            })
-        })
-        return favorites
     }
     clickHandler = (item)=>{
         if(this.state.currentItem.id === item.id){
@@ -52,7 +39,6 @@ class Account extends React.Component{
         this.setState({fullscreen:!this.state.fullscreen})
     }
     render(){
-      console.log(this.props.user, this.props.userItems, this.props.userFavorites)
         return(
             <>
             {this.props.user.id!== undefined?
@@ -80,7 +66,7 @@ class Account extends React.Component{
                     {this.renderListings(this.props.userItems)}
                     <h1>Favorites:</h1>
                     <div className="listingcontainer">
-                        {this.renderListings(this.renderFavorites())}
+                        {this.renderListings(this.props.userFavorites)}
                     </div>
                 </div>
                 <Showpage

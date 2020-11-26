@@ -5,7 +5,7 @@ class Item extends React.Component{
     render(){
         return(
             <div className="item" onClick={()=>this.props.clickHandler(this.props.item)}>
-                <img className="itemimage" src={this.props.item.images[0]}/>
+                <img className="itemimage" src={this.props.item.images[0]} alt={this.props.item.name}/>
                 <div className="itemrightside">
                     <h2>Price: ${this.props.item.price}</h2>
                     <h3>Condition: {this.props.item.condition.toUpperCase()}</h3>

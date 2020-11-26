@@ -26,7 +26,7 @@ class ImageUploader extends Component{
     previewImages = () =>{
         return this.state.images.map(image=>
             <div class="container">
-                <img className="image" src={image} alt="image"/>
+                <img className="image" src={image} alt="previewimage"/>
                 <div class="overlay" onClick={()=>this.deleteHandler(image)}>
                     <div class="text">Delete</div>
                 </div>
@@ -41,7 +41,6 @@ class ImageUploader extends Component{
     }
 
     render(){
-        console.log(this.state.images)
         return (
             <div className="imageuploader">
                 <form onSubmit={event => this.submitHandler(event)}>

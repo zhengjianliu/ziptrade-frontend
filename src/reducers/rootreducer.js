@@ -14,13 +14,17 @@ export default function rootreducer(state = initialState, action) {
         loggedin: true
       }
     case 'USER_LOGOUT':
+    console.log(state)
       return {
         user: {},
-        loggedin:false
+        items: [],
+        favorites: [],
+        loggedin: false
       }
     case 'ADD_ITEM':
-      console.log({...state, items: [...state.items, action.data]})
       return {...state, items: [...state.items, action.data]}
+    case 'ADD_FAVORITE':
+      return{...state, favorites:[...state.favorites, action.data]}
     default:
       return state;
   }
