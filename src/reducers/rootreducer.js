@@ -25,6 +25,10 @@ export default function rootreducer(state = initialState, action) {
       return {...state, items: [...state.items, action.data]}
     case 'ADD_FAVORITE':
       return{...state, favorites:[...state.favorites, action.data]}
+    case 'UNLIKE':
+      const favorites = state.favorites.filter(favorite=> favorite.id !== action.id.id)
+      console.log(favorites, action.id)
+      return {...state, favorites:favorites}
     default:
       return state;
   }

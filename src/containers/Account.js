@@ -25,6 +25,20 @@ class Account extends React.Component{
             </div>
         )
     }
+
+    renderFavorites = (favoritedItems) =>{
+          let favorites = []
+          this.props.items.forEach(item=>{
+              favoritedItems.forEach(favorite=>{
+                  if(item.id === favorite.item_id){
+                      favorites.push(item)
+                  }
+              })
+          })
+          console.log(favorites)
+          return favorites
+      }
+
     clickHandler = (item)=>{
         if(this.state.currentItem.id === item.id){
             this.setState({currentItem:item, show:!this.state.show})
@@ -39,6 +53,7 @@ class Account extends React.Component{
         this.setState({fullscreen:!this.state.fullscreen})
     }
     render(){
+      console.log(this.props.userFavorites)
         return(
             <>
             {this.props.user.id!== undefined?
@@ -66,7 +81,7 @@ class Account extends React.Component{
                     {this.renderListings(this.props.userItems)}
                     <h1>Favorites:</h1>
                     <div className="listingcontainer">
-                        {this.renderListings(this.props.userFavorites)}
+                        {this.renderListings(this.renderFavorites(this.props.userFavorites))}
                     </div>
                 </div>
                 <Showpage

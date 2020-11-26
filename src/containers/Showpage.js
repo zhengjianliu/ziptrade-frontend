@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 class Showpage extends React.Component{
 
   itemLikefilter = item =>{
-     return this.props.userFavorites.find(favoritedItem=>favoritedItem.id===item.id)
+     return this.props.userFavorites.find(favoritedItem=>favoritedItem.item_id===item.id)
   }
   likeHandler = item =>{
     if(!this.itemLikefilter(item)){
@@ -22,13 +22,25 @@ class Showpage extends React.Component{
       }
       fetch('http://localhost:3000/favorites',options)
       .then(resp=>resp.json())
-      .then(_data=>{
-        this.props.likeItem(item)
+      .then(data=>{
+        this.props.likeItem(data)
       })
     }
   }
+
+  unlikeHandler = item =>{
+      let favor  = this.props.userFavorites.find(f => f.item_id ===item.id && f.user_id === this.props.user.id)
+      const options = {
+        method: 'DELETE'
+      }
+      fetch(`http://localhost:3000/favorites/${favor.id}`,options)
+      .then(resp=>resp.json())
+      .then(data=>{
+        this.props.unlike(data)
+      })
+  }
     render(){
-      console.log(this.props.currentItem, this.props.userFavorites)
+      console.log(this.props.currentItem)
         return(
             <div id={this.props.fullscreen?"fullshowpage":"showpage"} className={this.props.show?"show":null}>
                 <div className="arrowup" onClick={this.props.fullscreenHandler}>
@@ -42,7 +54,12 @@ class Showpage extends React.Component{
                       className="itemimage"
                       alt={this.props.currentItem.name}
                       src={this.props.currentItem.length!==0?this.props.currentItem.images[0]:""}/>
-                    {this.props.loggedin?<button onClick={()=>this.likeHandler(this.props.currentItem)}>Like</button>:null}
+                    {this.props.loggedin?
+                      !this.itemLikefilter(this.props.currentItem)?
+                      <button onClick={()=>this.likeHandler(this.props.currentItem)}>Like</button>
+                      :
+                      <button onClick={()=>this.unlikeHandler(this.props.currentItem)}>Liked</button>
+                      :null}
                     <h3>Product Name: {this.props.currentItem.name}</h3>
                     <h4>Price: ${this.props.currentItem.price}</h4>
                     <h4>Condition: {this.props.currentItem.condition}</h4>
@@ -88,7 +105,8 @@ const msp = state =>{
 }
 const mdp = dispatch =>{
   return {
-    likeItem: likeditem => dispatch({type:'ADD_FAVORITE', data:likeditem })
+    likeItem: likeditem => dispatch({type:'ADD_FAVORITE', data:likeditem }),
+    unlike: id => dispatch({type:'UNLIKE', id})
   }
 }
 export default connect(msp,mdp)(Showpage)
