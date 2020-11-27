@@ -1,6 +1,8 @@
 import React from 'react'
 import arrowup from '../images/arrowup.png'
 import {connect} from 'react-redux'
+import redheart from '../images/redheart.png'
+import heart from '../images/heart.png'
 
 class Showpage extends React.Component{
 
@@ -56,10 +58,11 @@ class Showpage extends React.Component{
                       src={this.props.currentItem.length!==0?this.props.currentItem.images[0]:""}/>
                     {this.props.loggedin?
                       !this.itemLikefilter(this.props.currentItem)?
-                      <button onClick={()=>this.likeHandler(this.props.currentItem)}>Like</button>
+                      <img src={heart}className="heart" onClick={()=>this.likeHandler(this.props.currentItem)}/>
                       :
-                      <button onClick={()=>this.unlikeHandler(this.props.currentItem)}>Liked</button>
+                      <img src={redheart} className="heart" onClick={()=>this.unlikeHandler(this.props.currentItem)}/>
                       :null}
+                    <br/>
                     <h3>Product Name: {this.props.currentItem.name}</h3>
                     <h4>Price: ${this.props.currentItem.price}</h4>
                     <h4>Condition: {this.props.currentItem.condition}</h4>

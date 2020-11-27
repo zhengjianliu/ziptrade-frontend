@@ -293,9 +293,6 @@
   height: 100vh;
   display: flex;
 }
-.accountpage h1{
-  padding-top: 70px;
-}
 
 .accountleftside{
   background-color:white;
@@ -303,7 +300,7 @@
   height: auto;
   text-align: left;
   padding-top: 40px;
-  padding-left: 40px;
+  padding-left: 4%;
 }
 
 .accountleftside h3{
@@ -337,7 +334,7 @@
 .accountrightside{
   background-color: white;
   height: 100%;
-
+  padding-top: 150px;
   right:0;
   width: 60%;
   overflow: scroll;
@@ -365,7 +362,7 @@
   width: 200px;
   background-color: rgba(240, 240, 240, 0.233);
   border-radius: 20px;
-  
+
 }
 
 .listingleftside{
@@ -405,6 +402,32 @@
   letter-spacing: 2px;
 }
 
+/* edit use form */
+
+.edituserform{
+  background-color: rgb(238, 238, 238);
+  padding-bottom:250px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  border-radius: 20px;
+  height: 100%;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.displayphone{
+  width: 80%;
+  line-height: 2.4;
+  margin-bottom: 15px;
+  font-size: 17px;
+  font-weight: 700;
+  margin-left: 10%;
+  height: 40px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
 /* new listing page*/
 
 #newlisitingform{
@@ -514,6 +537,13 @@ hr{
   height: auto;
 }
 
+.heart{
+  width: 30px;
+  height: 27px!important;
+  margin:2px auto!important;
+  border-radius: 0!important;
+  cursor: pointer;
+}
 
 /*showpage*/
 #showpage {
@@ -677,11 +707,12 @@ hr{
   .accountpage{
     display: block;
   }
+
   .accountleftside{
-    width: 100%;
+    width: 90%;
     padding-left: 0;
     padding-top: 40px;
-    padding-left: 40px;
+    padding-left: 10%;
   }
   .accountleftside h1{
     padding-top: 50px;
@@ -691,7 +722,6 @@ hr{
   }
   .accountleftside h3{
     margin: 0;
-
   }
 
   .listing img{
@@ -702,6 +732,7 @@ hr{
   .accountrightside{
     width: auto;
     height: 100vh;
+    padding-top: 100px;
     border-top: .5px solid lightgrey;
   }
 

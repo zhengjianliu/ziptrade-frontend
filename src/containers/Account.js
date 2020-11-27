@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Showpage from './Showpage'
+import EditUser from './EditUser'
 
 class Account extends React.Component{
     state={
@@ -53,10 +54,10 @@ class Account extends React.Component{
         this.setState({fullscreen:!this.state.fullscreen})
     }
     render(){
-      console.log(this.props.userFavorites)
         return(
             <>
             {this.props.user.id!== undefined?
+
             <div className="accountpage">
                 <div className="accountleftside">
                     <h1>Account Info: </h1>
@@ -72,17 +73,30 @@ class Account extends React.Component{
                     <br/>
                     <br/>
                 </div>
-
                 <div className="accountrightside">
-                    <Link to="/newlisting"><button className="loginbutton newlistingbutton">+ New Listing</button></Link>
-                    <h1>Listings:</h1>
-                    <br/>
-                    <br/>
-                    {this.renderListings(this.props.userItems)}
-                    <h1>Favorites:</h1>
-                    <div className="listingcontainer">
-                        {this.renderListings(this.renderFavorites(this.props.userFavorites))}
-                    </div>
+                    {this.props.userItems.length===0?
+                      <div clasName="addbutton">
+                        <Link to="/newlisting"><button className="loginbutton">+ New Listing</button></Link>
+                      </div>
+                      :
+                      <>
+                        <Link to="/newlisting"><button className="loginbutton newlistingbutton">+ New Listing</button></Link>
+                        <h1>Listings:</h1>
+                        <br/>
+                        <br/>
+                        {this.renderListings(this.props.userItems)}
+                      </>
+                    }
+                    {this.props.userFavorites.length===0?
+                      null
+                      :
+                      <>
+                        <h1>Favorites:</h1>
+                        <div className="listingcontainer">
+                            {this.renderListings(this.renderFavorites(this.props.userFavorites))}
+                        </div>
+                      </>
+                    }
                 </div>
                 <Showpage
                 currentItem={this.state.currentItem}
