@@ -43,11 +43,13 @@ class Homepage extends React.Component{
                 {this.renderData()}
             </div>
             <Showpage
-            currentItem={this.state.currentItem}
-            show={this.state.show}
-            fullscreen={this.state.fullscreen}
-            fullscreenHandler = {this.fullscreenHandler}
-            closeHandler={this.closeHandler}
+              allItems={this.props.allItems}
+              currentItem={this.state.currentItem}
+              show={this.state.show}
+              fullscreen={this.state.fullscreen}
+              fullscreenHandler = {this.fullscreenHandler}
+              closeHandler={this.closeHandler}
+              clickHandler={this.clickHandler}
             />
             </section>
         )

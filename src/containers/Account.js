@@ -19,7 +19,7 @@ class Account extends React.Component{
                 <div className="listingrightside">
                     <h4>Product Name: {item.name.toUpperCase()}</h4>
                     <h4>Category: {item.category}</h4>
-                    <h4>Price: {item.price}</h4>
+                    <h4>Price: ${item.price}</h4>
                     <h4>Condition: {item.condition}</h4>
                     <h4>Available: {item.available?"Yes":"No"}</h4>
                 </div>
@@ -65,7 +65,7 @@ class Account extends React.Component{
                     <h3>Fullname: {this.props.user.fullname.toUpperCase()}</h3>
                     <h3>Address: {this.props.user.address.toUpperCase()}</h3>
                     <h3>Zip Code: {this.props.user.zipcode}</h3>
-                    <h3>city: {this.props.user.city.toUpperCase()}</h3>
+                    <h3>City: {this.props.user.city.toUpperCase()}</h3>
                     <h3>Phone Number: {this.props.user.phone}</h3>
                     <h3>Displayphone: {this.props.user.displayphone?"yes":"no"}</h3>
                     <h3>Email: {this.props.user.email.toUpperCase()}</h3>
@@ -75,11 +75,13 @@ class Account extends React.Component{
                 </div>
                 <div className="accountrightside">
                     {this.props.userItems.length===0?
-                      <div clasName="addbutton">
+                      <div>
+                        <br/><br/><br/><br/>
                         <Link to="/newlisting"><button className="loginbutton">+ New Listing</button></Link>
                       </div>
                       :
                       <>
+                        <br/><br/><br/><br/>
                         <Link to="/newlisting"><button className="loginbutton newlistingbutton">+ New Listing</button></Link>
                         <h1>Listings:</h1>
                         <br/>
@@ -99,11 +101,13 @@ class Account extends React.Component{
                     }
                 </div>
                 <Showpage
-                currentItem={this.state.currentItem}
-                show={this.state.show}
-                fullscreen={this.state.fullscreen}
-                fullscreenHandler = {this.fullscreenHandler}
-                closeHandler={this.closeHandler}
+                  allItems={this.props.allItems}
+                  currentItem={this.state.currentItem}
+                  show={this.state.show}
+                  fullscreen={this.state.fullscreen}
+                  fullscreenHandler = {this.fullscreenHandler}
+                  closeHandler={this.closeHandler}
+                  clickHandler={this.clickHandler}
                 />
             </div>
             :

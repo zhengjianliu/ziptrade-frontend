@@ -2,6 +2,7 @@ const initialState = {
   user: {},
   items: [],
   favorites: [],
+  allItems:[],
   loggedin: false
 }
 export default function rootreducer(state = initialState, action) {
@@ -21,14 +22,20 @@ export default function rootreducer(state = initialState, action) {
         loggedin: false
       }
     case 'UPDATE_USER':
-
       return{...state.user, user:action.updateduser}
+    case 'UPDATE_ITEMS':
+      return{
+        allItems: action.items
+      }
     case 'ADD_ITEM':
       return {...state, items: [...state.items, action.data]}
+    case 'DELETE_ITEM':
+    const items = state.items.filter(item=> item.id!== action.deletedItem.id)
+      return {...state, items:items}
     case 'ADD_FAVORITE':
       return{...state, favorites:[...state.favorites, action.data]}
     case 'UNLIKE':
-      const favorites = state.favorites.filter(favorite=> favorite.id !== action.id.id)
+      const favorites = state.favorites.filter(favorite=> favorite.id !== action.unlike.id)
       return {...state, favorites:favorites}
     default:
       return state;

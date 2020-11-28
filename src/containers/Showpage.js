@@ -3,6 +3,7 @@ import arrowup from '../images/arrowup.png'
 import {connect} from 'react-redux'
 import redheart from '../images/redheart.png'
 import heart from '../images/heart.png'
+import Item from '../components/Item'
 
 class Showpage extends React.Component{
 
@@ -41,8 +42,30 @@ class Showpage extends React.Component{
         this.props.unlike(data)
       })
   }
+  renderStore = () =>{
+    let sellerItems = this.props.allItems.filter(item =>
+      item.ownerId === this.props.currentItem.ownerId
+    )
+    return sellerItems.map(item=>
+      <div className="storeitem" onClick={()=>this.props.clickHandler(item)}>
+          <img className="storeimg" src={item.images[0]}/>
+
+      </div>
+    )
+  }
+
+  deleteItemHandler= item =>{
+    const options = {
+      method: 'DELETE'
+    }
+    fetch(`http://localhost:3000/items/${item.id}`,options)
+    .then(resp=>resp.json())
+    .then(item=>{
+      this.props.deleteItem(item)
+    })
+  }
+
     render(){
-      console.log(this.props.currentItem)
         return(
             <div id={this.props.fullscreen?"fullshowpage":"showpage"} className={this.props.show?"show":null}>
                 <div className="arrowup" onClick={this.props.fullscreenHandler}>
@@ -73,12 +96,21 @@ class Showpage extends React.Component{
                 {this.props.fullscreen?
                     this.props.currentItem.ownerId === this.props.user.id?
                     <div className="fullrightside">
-                        <h2>This is your listing:</h2>
+                          <h2>This is your listing:</h2>
                         <hr/>
                         <h3>Your Name: {this.props.user.fullname}</h3>
                         <h3>Contact Info: </h3>
                         {this.props.user.displayphone?<h4>Phone: {this.props.user.phone}</h4>:null}
                         <h4>Email: {this.props.user.email}</h4>
+                          <br/>
+                          <h2>Your's Store:</h2>
+                          <hr/>
+                          <div className="sellerstore">
+                              {this.renderStore()}
+                          </div>
+                          <button className="deletebutton" onClick={()=>this.deleteItemHandler(this.props.currentItem)}>
+                            DELETE THIS LISTING
+                          </button>
                     </div>
                     :
                     <div className="fullrightside">
@@ -88,7 +120,11 @@ class Showpage extends React.Component{
                         <h3>Contact Info: </h3>
                         {this.props.currentItem.owner.displayphone?<h4>Phone: {this.props.currentItem.owner.phone}</h4>:null}
                         <h4>Email: {this.props.currentItem.owner.email}</h4>
+                        <br/>
+                        <h2>Seller's Store:</h2>
+                        <hr/>
                         <div className="sellerstore">
+                            {this.renderStore()}
                         </div>
                     </div>
                     :
@@ -109,7 +145,8 @@ const msp = state =>{
 const mdp = dispatch =>{
   return {
     likeItem: likeditem => dispatch({type:'ADD_FAVORITE', data:likeditem }),
-    unlike: id => dispatch({type:'UNLIKE', id})
+    unlike: unlike => dispatch({type:'UNLIKE', unlike}),
+    deleteItem: deletedItem => dispatch({type:'DELETE_ITEM', deletedItem})
   }
 }
 export default connect(msp,mdp)(Showpage)

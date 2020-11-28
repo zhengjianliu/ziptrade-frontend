@@ -18,7 +18,7 @@ class Login extends React.Component{
       }
 
       loginHandler = (userInfo) =>{
-        const options={
+        const options ={
           method: "POST",
           headers:{
             accepts: "application/json",
