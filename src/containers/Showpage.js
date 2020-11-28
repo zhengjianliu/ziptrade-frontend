@@ -54,17 +54,6 @@ class Showpage extends React.Component{
     )
   }
 
-  deleteItemHandler= item =>{
-    const options = {
-      method: 'DELETE'
-    }
-    fetch(`http://localhost:3000/items/${item.id}`,options)
-    .then(resp=>resp.json())
-    .then(item=>{
-      this.props.deleteItem(item)
-    })
-  }
-
     render(){
         return(
             <div id={this.props.fullscreen?"fullshowpage":"showpage"} className={this.props.show?"show":null}>
@@ -108,7 +97,7 @@ class Showpage extends React.Component{
                           <div className="sellerstore">
                               {this.renderStore()}
                           </div>
-                          <button className="deletebutton" onClick={()=>this.deleteItemHandler(this.props.currentItem)}>
+                          <button className="deletebutton" onClick={()=>this.props.deleteItemHandler(this.props.currentItem)}>
                             DELETE THIS LISTING
                           </button>
                     </div>
@@ -145,8 +134,7 @@ const msp = state =>{
 const mdp = dispatch =>{
   return {
     likeItem: likeditem => dispatch({type:'ADD_FAVORITE', data:likeditem }),
-    unlike: unlike => dispatch({type:'UNLIKE', unlike}),
-    deleteItem: deletedItem => dispatch({type:'DELETE_ITEM', deletedItem})
+    unlike: unlike => dispatch({type:'UNLIKE', unlike})
   }
 }
 export default connect(msp,mdp)(Showpage)

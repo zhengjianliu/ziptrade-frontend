@@ -50,6 +50,7 @@ class Homepage extends React.Component{
               fullscreenHandler = {this.fullscreenHandler}
               closeHandler={this.closeHandler}
               clickHandler={this.clickHandler}
+              deleteItemHandler={this.props.deleteItemHandler}
             />
             </section>
         )
