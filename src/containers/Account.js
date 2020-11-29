@@ -57,7 +57,6 @@ class Account extends React.Component{
         return(
             <>
             {this.props.user.id!== undefined?
-
             <div className="accountpage">
                 <div className="accountleftside">
                     <h1>Account Info: </h1>

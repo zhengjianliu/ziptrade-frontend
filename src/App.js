@@ -61,12 +61,19 @@ class App extends Component{
     })
   }
 
+  clickFilterHandler = searchTerm =>{
+    this.setState({searchterm: searchTerm})
+  }
+
   render(){
     return (
       <Router>
         {this.checkinguser()}
         <div className="App">
-          <Navbar searchHandler={this.searchHandler}/>
+          <Navbar
+            searchHandler={this.searchHandler}
+            clickFilterHandler={this.clickFilterHandler}
+            searchterm={this.state.searchterm}/>
           <Route exact path="/" render={()=>
               <Homepage
                 allItems={this.state.items}

@@ -6,16 +6,21 @@ import {connect} from 'react-redux'
 class Navbar extends Component{
   state={
     open: false,
+    openfilter:false,
   }
 
   clickHandler = () =>{
     this.setState({open: !this.state.open})
+  }
+  filterHandler = () =>{
+    this.setState({openfilter: !this.state.openfilter})
   }
   logoutHandler = () =>{
     this.props.userLogout()
   }
   render(){
     return(
+      <div className="wholenavbar">
       <div className="navbarcontainer">
       <div id="navbar">
         <div className="leftside">
@@ -38,6 +43,16 @@ class Navbar extends Component{
       <div className={this.state.open? "menu open": "menu" } onClick={this.clickHandler}>
         {this.props.loggedin?<NavLink to="/account">Account</NavLink>:null}
         {this.props.loggedin?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
+      </div>
+      </div>
+      <button id="filterbutton" onClick={this.filterHandler}>Filter {this.state.openfilter?"<":">"}</button>
+      <div id="secondnav" className={this.state.openfilter?"on":null}>
+        <div className="filtername">Condition: </div>
+        <button id="inputbutton" className={this.props.searchterm === ""? "active":null} onClick={e=>this.props.clickFilterHandler("")}>ALL</button>
+        <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "NEW"? "active":null} onClick={e=>this.props.clickFilterHandler("new")}>NEW</button>
+        <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "MINT"? "active":null} onClick={e=>this.props.clickFilterHandler("mint")}>MINT</button>
+        <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "GOOD"? "active":null} onClick={e=>this.props.clickFilterHandler("good")}>GOOD</button>
+        <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "FAIR"? "active":null} onClick={e=>this.props.clickFilterHandler("fair")}>FAIR</button>
       </div>
       </div>
     )
