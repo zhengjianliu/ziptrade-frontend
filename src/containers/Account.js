@@ -11,7 +11,7 @@ class Account extends React.Component{
     }
     renderListings = (items) =>{
         return items.map(item=>
-            <div className="listing" onClick={()=>this.clickHandler(item)} style={{cursor:"pointer"}}>
+            <div className={item.available?"listing":"listing off"} onClick={()=>this.clickHandler(item)} style={{cursor:"pointer"}}>
                 <div className="listingleftside">
                     <img src={item.images[0]} alt={item.name}/>
                 </div>

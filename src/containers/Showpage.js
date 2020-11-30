@@ -48,10 +48,17 @@ class Showpage extends React.Component{
       item.ownerId === this.props.currentItem.ownerId
     )
     return sellerItems.map(item=>
-      <div className="storeitem" onClick={()=>this.props.clickHandler(item)}>
-          <img className="storeimg" src={item.images[0]}/>
+      <>
+        {item.available?
+          <div className="storeitem" onClick={()=>this.props.clickHandler(item)}>
+              <img className="storeimg" src={item.images[0]}/>
 
-      </div>
+          </div>
+          :
+          null
+        }
+      </>
+
     )
   }
 
