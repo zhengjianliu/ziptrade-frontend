@@ -84,7 +84,7 @@ class Showpage extends React.Component{
                     <h4>Price: ${this.props.currentItem.price}</h4>
                     <h4>Condition: {this.props.currentItem.condition}</h4>
                     <h4>Category: {this.props.currentItem.category}</h4>
-                    <h4>Description: {this.props.currentItem.description}</h4>
+                    {this.props.fullscreen?<h4>Description: {this.props.currentItem.description}</h4>:null}
                 </div>
 
                 {this.props.fullscreen?
