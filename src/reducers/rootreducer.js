@@ -2,7 +2,8 @@ const initialState = {
   user: {},
   items: [],
   favorites: [],
-  loggedin: false
+  loggedin: false,
+  currentItem: [],
 }
 export default function rootreducer(state = initialState, action) {
   switch (action.type) {
@@ -21,12 +22,27 @@ export default function rootreducer(state = initialState, action) {
         loggedin: false
       }
     case 'UPDATE_USER':
-      return{...state.user, user:action.updateduser}
+      return{...state, user:action.newUserInfo}
     case 'ADD_ITEM':
       return {...state, items: [...state.items, action.data]}
+    case 'UPDATE_EDITED_ITEM':
+      let editedItemIdx = ""
+      state.items.forEach((item,idx)=>{
+        if(item.id === state.currentItem.id){
+          editedItemIdx = idx
+        }
+      })
+      let newItems = state.items
+      newItems.splice(editedItemIdx,1,action.updatedItem)
+      console.log(newItems)
+      return {...state, items: newItems}
+
     case 'DELETE_ITEM':
     const items = state.items.filter(item=> item.id!== action.deletedItem.id)
       return {...state, items:items}
+    case 'CURRENT_ITEM':
+      return {...state, currentItem: action.selectedItem}
+      console.log(state.currentItem)
     case 'ADD_FAVORITE':
       return{...state, favorites:[...state.favorites, action.data]}
     case 'UNLIKE':

@@ -16,7 +16,6 @@
   transition: .5s;
 }
 
-
 /*Navbar*/
 .wholenavbar{
   position: fixed;
@@ -414,7 +413,6 @@
   cursor: pointer;
 }
 
-
 .accountrightside{
   background-color: white;
   height: 100%;
@@ -445,7 +443,7 @@
   width: 200px;
   background-color: rgba(240, 240, 240, 0.233);
   border-radius: 20px;
-
+  object-fit: contain;
 }
 
 .listingleftside{
@@ -488,7 +486,7 @@
 /* edit use form */
 
 .edituserform{
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(252, 252, 252);
   padding-bottom:250px;
   padding-left: 20px;
   padding-right: 20px;
@@ -508,6 +506,20 @@
   margin-left: 10%;
   height: 40px;
   background-color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.hidephonenumber{
+  width: 80%;
+  line-height: 2.4;
+  margin-bottom: 15px;
+  font-size: 17px;
+  font-weight: 700;
+  margin-left: 10%;
+  height: 40px;
+  color:white;
+  background-color: black;
   cursor: pointer;
   border-radius: 20px;
 }
@@ -616,6 +628,16 @@
   margin-left: auto;
   margin-right: auto;
 }
+.editbutton{
+  width: 200px;
+  height: 30px;
+  border-radius: 30px;
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background-color: lightgrey;
+  cursor: pointer;
+}
 
 hr{
   border: 0.2px solid lightgrey;
@@ -655,7 +677,7 @@ hr{
   margin-top: 20vh;
   margin-bottom: 20px;
   background-color: red;
-  height: 60px;
+  height: 40px;
   border-radius: 40px;
   font-size: 17pt;
   letter-spacing: 2px;

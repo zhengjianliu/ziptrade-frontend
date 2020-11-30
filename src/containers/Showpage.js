@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import redheart from '../images/redheart.png'
 import heart from '../images/heart.png'
 import Item from '../components/Item'
+import {Link} from 'react-router-dom'
 
 class Showpage extends React.Component{
 
@@ -54,6 +55,10 @@ class Showpage extends React.Component{
     )
   }
 
+  editClickHandler = (currentItem) =>{
+    this.props.setCurrentItem(currentItem)
+  }
+
     render(){
         return(
             <div id={this.props.fullscreen?"fullshowpage":"showpage"} className={this.props.show?"show":null}>
@@ -86,6 +91,7 @@ class Showpage extends React.Component{
                     this.props.currentItem.ownerId === this.props.user.id?
                     <div className="fullrightside">
                           <h2>This is your listing:</h2>
+                          <Link to="/editlisting"><button className="editbutton" onClick={this.editClickHandler(this.props.currentItem)}>Edit</button></Link>
                         <hr/>
                         <h3>Your Name: {this.props.user.fullname}</h3>
                         <h3>Contact Info: </h3>
@@ -134,7 +140,8 @@ const msp = state =>{
 const mdp = dispatch =>{
   return {
     likeItem: likeditem => dispatch({type:'ADD_FAVORITE', data:likeditem }),
-    unlike: unlike => dispatch({type:'UNLIKE', unlike})
+    unlike: unlike => dispatch({type:'UNLIKE', unlike}),
+    setCurrentItem: selectedItem => dispatch({type:"CURRENT_ITEM", selectedItem})
   }
 }
 export default connect(msp,mdp)(Showpage)

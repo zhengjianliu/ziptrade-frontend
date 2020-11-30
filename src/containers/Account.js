@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Showpage from './Showpage'
-import EditUser from './EditUser'
 
 class Account extends React.Component{
     state={
@@ -21,7 +20,7 @@ class Account extends React.Component{
                     <h4>Category: {item.category}</h4>
                     <h4>Price: ${item.price}</h4>
                     <h4>Condition: {item.condition}</h4>
-                    <h4>Available: {item.available?"Yes":"No"}</h4>
+                    <h4>Available: {item.available?"YES":"NO"}</h4>
                 </div>
             </div>
         )
@@ -36,7 +35,6 @@ class Account extends React.Component{
                   }
               })
           })
-          console.log(favorites)
           return favorites
       }
 
@@ -66,9 +64,9 @@ class Account extends React.Component{
                     <h3>Zip Code: {this.props.user.zipcode}</h3>
                     <h3>City: {this.props.user.city.toUpperCase()}</h3>
                     <h3>Phone Number: {this.props.user.phone}</h3>
-                    <h3>Displayphone: {this.props.user.displayphone?"yes":"no"}</h3>
+                    <h3>Displayphone: {this.props.user.displayphone?"YES":"NO"}</h3>
                     <h3>Email: {this.props.user.email.toUpperCase()}</h3>
-                    <button className="loginbutton">Edit</button>
+                    <Link to='/editaccount'><button className="loginbutton">Edit</button></Link>
                     <br/>
                     <br/>
                 </div>

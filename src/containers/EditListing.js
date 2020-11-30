@@ -3,18 +3,18 @@ import ImageUploader from '../components/ImageUploader'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
-class Newlisting extends Component{
+class EditListing extends Component{
     state={
-        name:"",
-        category:"",
-        price:"",
-        description:"",
-        condition:"",
-        images: []
+        name:this.props.currentItem.name,
+        category:this.props.currentItem.category,
+        price:this.props.currentItem.price,
+        description:this.props.currentItem.description,
+        condition:this.props.currentItem.condition,
+        images: this.props.currentItem.images,
     }
 
     getImages = (image)=>{
-        this.setState({images:[...this.state.images, image]})
+      this.setState({images:[...this.state.images, image]})
     }
 
     changeHandler= e =>{
@@ -28,29 +28,31 @@ class Newlisting extends Component{
     submitHandler = e =>{
         e.preventDefault()
         const options ={
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "content-type":"application/json",
                 "accept":"application/json"
             },
             body: JSON.stringify({
+                id:this.props.currentItem.id,
                 name: this.state.name,
                 category: this.state.category,
                 ownerId: this.props.user.id,
                 price: this.state.price,
                 description: this.state.description,
                 condition: this.state.condition,
-                images: this.state.images
+                images: this.state.images,
             })
         }
-        fetch('http://localhost:3000/items',options)
+        fetch(`http://localhost:3000/items/${this.props.currentItem.id}`,options)
         .then(resp=>resp.json())
         .then(newlisting=>{
-            this.props.updateItems(newlisting)
-            this.props.addItem(newlisting)
+            this.props.updateEditedItem(newlisting)
+            this.props.updateItem(newlisting)
         })
-        this.props.history.push('/')
+        this.props.history.push('/account')
     }
+
     render(){
         return(
             <div className="accountpage">
@@ -110,7 +112,7 @@ class Newlisting extends Component{
                             this.state.condition!==""&&
                             this.state.description!==""&&
                             this.state.images.length!==0?
-                        <button type="submit" className="loginbutton">Create</button>
+                        <button type="submit" className="loginbutton">Update</button>
                         :
                         null
                         }
@@ -123,12 +125,13 @@ class Newlisting extends Component{
 
 const msp = state =>{
     return{
-        user:state.user
+        user:state.user,
+        currentItem: state.currentItem,
     }
 }
 const mdp = dispatch =>{
     return{
-      addItem: newItem => dispatch({type:'ADD_ITEM', data: newItem})
+      updateItem: updatedItem => dispatch({type:'UPDATE_EDITED_ITEM', updatedItem})
     }
 }
-export default connect(msp,mdp)(withRouter(Newlisting))
+export default connect(msp,mdp)(withRouter(EditListing))

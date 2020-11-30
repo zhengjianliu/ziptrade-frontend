@@ -8,6 +8,8 @@ import Signup from './containers/Signup'
 import {connect} from 'react-redux'
 import Account from './containers/Account'
 import Newlisting from './containers/Newlisting'
+import EditAccount from './containers/EditAccount'
+import EditListing from './containers/EditListing'
 
 class App extends Component{
   state={
@@ -41,6 +43,19 @@ class App extends Component{
   updateItems= item =>{
     this.setState({items:[...this.state.items, item],newItem:item})
   }
+
+updateEditedItem = editeditem=>{
+  let editedItemIdx = ""
+  this.state.items.forEach((item,idx)=>{
+    if(item.id === this.props.currentItem.id){
+      editedItemIdx = idx
+    }
+  })
+  let newItems = this.state.items
+  newItems.splice(editedItemIdx,1,editeditem)
+  console.log(newItems)
+  this.setState({items: newItems})
+}
 
   checkinguser = () =>{
     if(this.props.loggedin===false){
@@ -89,6 +104,8 @@ class App extends Component{
                 newItem={this.state.newItem}
                 deleteItemHandler={this.deleteItemHandler}/>}/>
           <Route path="/newlisting" render={()=> <Newlisting updateItems={this.updateItems}/>}/>
+          <Route exact path="/editaccount" render={()=> (<EditAccount/>)}/>
+          <Route exact path="/editlisting" render={()=> (<EditListing updateEditedItem={this.updateEditedItem}/>)}/>
         </div>
       </Router>
     );
@@ -98,7 +115,8 @@ class App extends Component{
 const msp = state =>{
   return {
     user: state.user,
-    loggedin: state.loggedin
+    loggedin: state.loggedin,
+    currentItem: state.currentItem,
   }
 }
 

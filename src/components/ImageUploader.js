@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class ImageUploader extends Component{
     state={
-        images:[]
+        images: this.props.images
     }
     onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
