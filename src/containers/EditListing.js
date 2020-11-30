@@ -9,6 +9,7 @@ class EditListing extends Component{
         category:this.props.currentItem.category,
         price:this.props.currentItem.price,
         description:this.props.currentItem.description,
+        available: this.props.currentItem.available,
         condition:this.props.currentItem.condition,
         images: this.props.currentItem.images,
     }
@@ -39,6 +40,7 @@ class EditListing extends Component{
                 category: this.state.category,
                 ownerId: this.props.user.id,
                 price: this.state.price,
+                available: this.state.available,
                 description: this.state.description,
                 condition: this.state.condition,
                 images: this.state.images,
@@ -51,6 +53,10 @@ class EditListing extends Component{
             this.props.updateItem(newlisting)
         })
         this.props.history.push('/account')
+    }
+
+    displayHandler = () =>{
+      this.setState({available:!this.state.available})
     }
 
     render(){
@@ -101,6 +107,9 @@ class EditListing extends Component{
                             <option value="good">Good</option>
                             <option value="fair">Fair</option>
                         </select>
+                        <br/>
+                        <br/>
+                        <div onClick={this.displayHandler} className={this.state.available?"displayphone":"hidephonenumber"}>Hide this item: {this.state.available?"NO":"YES"}</div>
 
                         <br/>
                         <label className="labelname">Description: </label>

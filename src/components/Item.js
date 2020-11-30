@@ -4,6 +4,8 @@ class Item extends React.Component{
 
     render(){
         return(
+          <>
+          {this.props.item.available?
             <div className="item" onClick={()=>this.props.clickHandler(this.props.item)}>
                 <img className="itemimage" src={this.props.item.images[0]} alt={this.props.item.name}/>
                 <div className="itemrightside">
@@ -13,6 +15,10 @@ class Item extends React.Component{
                     <h5>Category:<br/> {this.props.item.category.toUpperCase()}</h5>
                 </div>
             </div>
+            :
+            null
+          }
+          </>
         )
     }
 }
