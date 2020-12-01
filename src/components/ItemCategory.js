@@ -5,7 +5,7 @@ import Item from './Item'
 export default class ItemCategory extends React.Component{
 
   renderItems = () => {
-      return this.props.items.map((item,index)=><Item item={item} clickHandler={this.props.clickHandler}/>)
+      return this.props.items.map((item,index)=><Item key={index} item={item} clickHandler={this.props.clickHandler}/>)
   }
 
   render(){

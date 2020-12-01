@@ -34,7 +34,6 @@ export default function rootreducer(state = initialState, action) {
       })
       let newItems = state.items
       newItems.splice(editedItemIdx,1,action.updatedItem)
-      console.log(newItems)
       return {...state, items: newItems}
 
     case 'DELETE_ITEM':
@@ -42,7 +41,6 @@ export default function rootreducer(state = initialState, action) {
       return {...state, items:items}
     case 'CURRENT_ITEM':
       return {...state, currentItem: action.selectedItem}
-      console.log(state.currentItem)
     case 'ADD_FAVORITE':
       return{...state, favorites:[...state.favorites, action.data]}
     case 'UNLIKE':

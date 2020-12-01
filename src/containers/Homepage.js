@@ -1,8 +1,6 @@
 import React from 'react'
 import Loader from '../components/Loader'
-import Item from '../components/Item'
 import ItemCategory from '../components/ItemCategory'
-
 import Showpage from './Showpage'
 
 class Homepage extends React.Component {
@@ -12,6 +10,7 @@ class Homepage extends React.Component {
     currentItem: [],
     categories: []
   }
+
   filterCategory = () => {
     return this.props.items.forEach(item => {
       if (!this.state.categories.includes(item.category)) {
@@ -26,9 +25,7 @@ class Homepage extends React.Component {
   }
 
   renderCategory = () => {
-    {
-      this.filterCategory()
-    }
+    this.filterCategory()
     return this.state.categories.map(category => {
       let categoryItems = this.props.items.filter(item => item.category === category && item.available === true)
       return <ItemCategory key={category} items={categoryItems} clickHandler={this.clickHandler}/>

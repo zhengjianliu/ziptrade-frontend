@@ -72,7 +72,7 @@ class Navbar extends Component{
               <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "FAIR"? "active":null} onClick={e=>this.props.clickFilterHandler("fair")}>FAIR</button>
               </div>
               <div className="secondnavright">
-                <img className="locator" src={Locator} onClick={this.props.locator}/>
+                <img className="locator" src={Locator} onClick={this.props.locator} alt="locator"/>
                 <form onSubmit={(e)=>{ e.preventDefault()}}>
                   <input value={this.props.zipcode}  maxlength="5" placeholder="ZIPCODE" onChange={this.props.changeHandler}/>
                 </form>

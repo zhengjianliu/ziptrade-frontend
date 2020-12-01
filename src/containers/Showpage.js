@@ -3,7 +3,6 @@ import arrowup from '../images/arrowup.png'
 import {connect} from 'react-redux'
 import redheart from '../images/redheart.png'
 import heart from '../images/heart.png'
-import Item from '../components/Item'
 import {Link} from 'react-router-dom'
 
 class Showpage extends React.Component{
@@ -51,7 +50,7 @@ class Showpage extends React.Component{
       <>
         {item.available?
           <div className="storeitem" onClick={()=>this.props.clickHandler(item)}>
-              <img className="storeimg" src={item.images[0]}/>
+              <img className="storeimg" src={item.images[0]} alt="item"/>
 
           </div>
           :
@@ -82,9 +81,9 @@ class Showpage extends React.Component{
                       src={this.props.currentItem.length!==0?this.props.currentItem.images[0]:""}/>
                     {this.props.loggedin?
                       !this.itemLikefilter(this.props.currentItem)?
-                      <img src={heart}className="heart" onClick={()=>this.likeHandler(this.props.currentItem)}/>
+                      <img src={heart}className="heart" onClick={()=>this.likeHandler(this.props.currentItem)} alt="heart"/>
                       :
-                      <img src={redheart} className="heart" onClick={()=>this.unlikeHandler(this.props.currentItem)}/>
+                      <img src={redheart} className="heart" onClick={()=>this.unlikeHandler(this.props.currentItem)} alt="redheart"/>
                       :null}
                     <br/>
                     <h3>Product Name: {this.props.currentItem.name}</h3>

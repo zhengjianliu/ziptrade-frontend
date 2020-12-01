@@ -15,7 +15,9 @@
   list-style-type: none;
   transition: .5s;
 }
-
+a{
+  text-decoration: none;
+}
 /*Navbar*/
 
 .wholenavbar{
@@ -421,6 +423,7 @@
   letter-spacing: 2px;
   transition: .5s;
   color: white;
+  text-decoration: none;
 }
 
 .loginbutton:hover{
