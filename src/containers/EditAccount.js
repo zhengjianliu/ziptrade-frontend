@@ -67,7 +67,6 @@ class EditAccount extends React.Component{
         .then(resp=>resp.json())
         .then(updatedInfo=>{
           this.props.updateInfo(updatedInfo)
-          console.log(updatedInfo)
         })
         this.props.history.push('/account')
 

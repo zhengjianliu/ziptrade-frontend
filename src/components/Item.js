@@ -12,7 +12,6 @@ class Item extends React.Component{
                     <h2>Price: ${this.props.item.price}</h2>
                     <h3>Condition: {this.props.item.condition.toUpperCase()}</h3>
                     <h5>Product Name:<br/> {this.props.item.name.toUpperCase()}</h5>
-                    <h5>Category:<br/> {this.props.item.category.toUpperCase()}</h5>
                 </div>
             </div>
             :

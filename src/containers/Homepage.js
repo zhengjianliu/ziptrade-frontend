@@ -62,7 +62,6 @@ class Homepage extends React.Component {
   }
 
   render() {
-    console.log(this.state.currentItem)
     return (<section>
       <div className="homepage">
         {this.renderLoader()}
