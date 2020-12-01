@@ -17,6 +17,7 @@
 }
 
 /*Navbar*/
+
 .wholenavbar{
   position: fixed;
   width: 100%;
@@ -47,32 +48,43 @@
 
 .leftside{
   height: 50px;
-  padding: 0 20px;
-  padding-top: 10px;
-  font-size: 17pt;
-  font-weight: 700;
+  margin-left: 30px;
+  margin-right: 30px;
   display: flex;
+  margin-top: 2.5px;
+}
+
+.leftside img{
+  height: 45px;
 }
 .rightside{
   height: 50px;
   display: flex;
   line-height: 2;
 }
-
-.rightside img{
-  padding-top: 10px;
-  padding-right: 10px;
+.logginicon{
+  height: 45px;
+  margin-top: 2.5px;
+  margin-right: 30px;
 }
+
+.accounticon{
+  height: 45px;
+  margin-top: 2.5px;
+  margin-right: 30px
+}
+
+.logouticon{
+  height: 45px;
+  margin-top: 2.5px;
+  margin-right: 20px
+}
+
 
 .rightside div{
   display: flex;
   line-height: 2.5;
   font-size: 17pt;
-}
-.rightside a{
-  padding: 0px 20px;
-  font-size: 17pt;
-  font-weight: 700;
 }
 
 .burgermenu{
@@ -192,7 +204,6 @@
 }
 
 /* homepage */
-
 .homepage{
   width: auto;
   height: auto;
@@ -242,7 +253,19 @@
   float: left;
   text-align: left;
   margin-left: 3%;
+  margin-top: 80px;
   font-size: 23pt;
+  letter-spacing: 3px;
+}
+
+.category h1 span{
+  padding:0px 8px;
+  font-size: 20pt;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgb(0, 193, 8);
+  color: white;
+  margin-left: 15px;
 }
 
 /*image uploader button section */
@@ -769,7 +792,7 @@ hr{
   float: left;
   margin: 15px;
   border-radius: 20px;
-  margin-right: 15px;
+  margin-right: 5%;
   margin-top:0px;
   margin-left: 10%;
   transition: .5s;
@@ -869,34 +892,20 @@ hr{
     border-radius: 20px;
     position: absolute;
     display: block;
-    height: 135px;
+    height: auto;
     background-color: white;
     right: 0;
     opacity: 0;
     transition: .5s;
     transform: translateY(-400px) translateX(-20px)scaleY(0);
-    z-index: 1;
+    z-index: 10;
     box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.2);
-  }
-  .menu a{
-    width: 100%;
-    text-decoration: none;
-    padding: 20px 0px;
-    display: block;
-    font-size: 18pt;
-    font-weight: 700;
-    border-radius: 20px;
-    transition: .3s;
-  }
-  .menu a:hover{
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    background-color: rgb(223, 223, 223);
-    letter-spacing: 2px;
   }
 
   .open{
     opacity: 1;
     transform: translateY(20px) translateX(-20px);
+    padding: 10px;
   }
 
   /*second nav*/
@@ -930,6 +939,14 @@ hr{
     padding-left: 0px;
     margin-top: 20px;
     padding-bottom: 20px;
+  }
+
+  .leftside{
+    margin-left: 15px;
+    margin-right: 0px;
+  }
+  .logginicon{
+    margin-right: 10px;
   }
   /*account page*/
   .accountpage{
@@ -1011,7 +1028,8 @@ hr{
   }
 
   #showpage img{
-    margin-left: 5%;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .accountleftside{
@@ -1020,6 +1038,9 @@ hr{
   }
 
   /*homepage*/
+  .pad{
+    height: 50px;
+  }
   .item{
     margin: 0;
     width: 100%;
@@ -1036,4 +1057,10 @@ hr{
     padding-left: 20px;
   }
 
+  .category h1{
+    font-size: 20pt;
+  }
+  .category h1 span{
+    font-size: 18pt;
+  }
 }
