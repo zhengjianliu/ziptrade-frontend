@@ -56,7 +56,23 @@
 
 .leftside img{
   height: 45px;
+  animation: rotating 20s infinite;
+  transition: .5s;
 }
+
+@keyframes rotating{
+  0%{
+    transform:rotate(0deg);
+  }
+  50%{
+    transform:rotate(-360deg);
+  }
+  100%{
+    transform:rotate(-720deg);
+  }
+}
+
+
 .rightside{
   height: 50px;
   display: flex;
@@ -260,12 +276,14 @@
 
 .category h1 span{
   padding:0px 8px;
+  padding-left: 10px;
   font-size: 20pt;
   text-align: center;
   border-radius: 20px;
   background-color: rgb(0, 193, 8);
   color: white;
   margin-left: 15px;
+  text-align: center;
 }
 
 /*image uploader button section */
@@ -443,16 +461,17 @@
 
 .accountleftside{
   background-color:white;
-  width: 40%;
+  width: 36%;
   height: auto;
   text-align: left;
   padding-top: 40px;
   padding-left: 4%;
+  margin-right: 4%;
 }
 
 .accountleftside h3{
   width: 85%;
-  margin: 0px 0px ;
+  margin: 0px;
   padding: 0px 10px;
   padding-top: 5px;
   height: 50px;
