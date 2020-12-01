@@ -1,6 +1,7 @@
 import React from 'react'
 import Loader from '../components/Loader'
 import Item from '../components/Item'
+import ItemCategory from '../components/ItemCategory'
 
 import Showpage from './Showpage'
 
@@ -8,11 +9,26 @@ class Homepage extends React.Component{
     state={
         show:false,
         fullscreen:false,
-        currentItem:[]
+        currentItem:[],
+        categories:[],
     }
-    renderData = () =>{
-        return this.props.items.map((item,index)=><Item item={item} clickHandler={this.clickHandler}/>)
-    }
+    filterCategory = () =>{
+    return this.props.items.forEach(item =>{
+      if(!this.state.categories.includes(item.category)){
+        this.setState({categories:[...this.state.categories, item.category]})
+      }
+    })
+  }
+
+  renderCategory = () =>{
+    {this.filterCategory()}
+    return this.state.categories.map(category=>{
+      let categoryItems = this.props.items.filter( item => item.category === category)
+      return <ItemCategory key={category}
+        items={categoryItems} clickHandler={this.clickHandler}/>
+    })
+  }
+
     clickHandler = (item)=>{
         if(this.state.currentItem.id === item.id){
             this.setState({currentItem:item, show:!this.state.show})
@@ -40,7 +56,7 @@ class Homepage extends React.Component{
             <section>
             <div className="homepage">
                 {this.renderLoader()}
-                {this.renderData()}
+                {this.renderCategory()}
             </div>
             <Showpage
               allItems={this.props.allItems}

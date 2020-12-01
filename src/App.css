@@ -104,7 +104,7 @@
   transform: translateX(-100%);
   background-color: white;
   margin-top: -30px;
-  padding-bottom: 5px;
+  padding-top: 10px;
   opacity: 0;
   z-index: 1;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
@@ -113,8 +113,11 @@
 
 #secondnav.on{
   transform: translateX(0%);
-  opacity: 0.85;
+  opacity: 1;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+.secondnavleft{
+  margin-top: -10px;
 }
 .secondnavcontainer{
   display: flex;
@@ -136,7 +139,7 @@
   height: 30px;
   text-align: center;
   width: 150px;
-  border-bottom: 6px solid black;
+  border-bottom: 3px solid black;
 }
 #inputbutton{
   width: 90px;
@@ -166,7 +169,8 @@
   left: 0;
   top: -30px;
   position: absolute;
-  height: 45px;
+  height: 40px;
+  margin-top: 5px;
   color: white;
   background: black;
   font-weight: 700;
@@ -193,7 +197,7 @@
   width: auto;
   height: auto;
   margin-top: 80px;
-  background-color: lightgrey;
+  display: block;
 }
 
 .homepage h1{
@@ -228,7 +232,18 @@
   object-fit: cover;
 }
 
+.category{
+  width: 100%;
+  height: auto;
+}
 
+.category h1{
+  width: 97%;
+  float: left;
+  text-align: left;
+  margin-left: 3%;
+  font-size: 23pt;
+}
 
 /*image uploader button section */
 
@@ -892,11 +907,29 @@ hr{
     height: 25px;
     width: 60px;
   }
+
   .filtername{
     font-size: 11pt;
   }
+
   #filterbutton{
     height: 40px;
+  }
+
+  #secondnav{
+    margin-top: -30px;
+  }
+  .secondnavcontainer{
+    display: block;
+    margin-left: 5%;
+
+  }
+  .secondnavright{
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+    margin-top: 20px;
+    padding-bottom: 20px;
   }
   /*account page*/
   .accountpage{
