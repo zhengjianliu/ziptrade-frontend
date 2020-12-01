@@ -66,13 +66,12 @@ class Newlisting extends Component{
                     <form id="newlisitingform" onSubmit={this.submitHandler.bind(this)}>
                         <label className="labelname">Product Name: </label>
                         <br/>
-                        <input className="inputbox" type="text" name="name" placeholder="Product Name" value={this.state.name} onChange={this.changeHandler} required/>
+                        <input className="inputbox" type="text" name="name" maxlength="20" placeholder="Product Name" value={this.state.name} onChange={this.changeHandler} required/>
 
                         <br/>
                         <label className="labelname">Price: </label>
                         <br/>
-                        <input className="inputbox" type="number" name="price" placeholder="Price" value={this.state.price} onChange={this.changeHandler} required/>
-
+                        <input className="inputbox" type="number" name="price"  min="0" max="999999" placeholder="Price" value={this.state.price} onChange={this.changeHandler} required/>
                         <br/>
                         <label for="category" className="labelname">Choose a Category: </label>
                         <br/>
@@ -103,7 +102,7 @@ class Newlisting extends Component{
                         <br/>
                         <label className="labelname">Description: </label>
                         <br/>
-                        <textarea className="inputarea" type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler} required/>
+                        <textarea className="inputarea" type="text" name="description" placeholder="Description"  maxlength="300" value={this.state.description} onChange={this.changeHandler} required/>
                         {this.state.name!=="" &&
                             this.state.category!==""&&
                             this.state.price!=="" &&

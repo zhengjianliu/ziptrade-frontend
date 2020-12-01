@@ -28,7 +28,7 @@ class Homepage extends React.Component{
     }
     renderLoader = () =>{
         if(this.props.items.length===0){
-            if(this.props.searchterm===""){
+            if(this.props.searchterm===""&&this.props.zipcode===""){
                 return <Loader/>
             }
         }

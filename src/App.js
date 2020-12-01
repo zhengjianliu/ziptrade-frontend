@@ -15,7 +15,8 @@ class App extends Component{
   state={
     searchterm:"",
     items:[],
-    newItem:[]
+    newItem:[],
+    zipcode:"",
 }
 
   componentDidMount(){
@@ -25,14 +26,20 @@ class App extends Component{
   }
 
   filterItem = ()=>{
+    let filteredItems = []
     if (this.state.searchterm === ""){
-      return this.state.items
+      filteredItems = this.state.items
     }else{
-      return this.state.items.filter(
+      filteredItems = this.state.items.filter(
         item=>item.name.toUpperCase().includes(this.state.searchterm.toUpperCase())
       || item.category.toUpperCase().includes(this.state.searchterm.toUpperCase())
-      || item.condition.toUpperCase().includes(this.state.searchterm.toUpperCase()) )
+      || item.condition.toUpperCase().includes(this.state.searchterm.toUpperCase()))
     }
+
+    if(this.state.zipcode!==""){
+      filteredItems = filteredItems.filter(item=>item.owner.zipcode.includes(this.state.zipcode))
+    }
+    return filteredItems
   }
 
   searchHandler = e =>{
@@ -80,6 +87,22 @@ updateEditedItem = editeditem=>{
     this.setState({searchterm: searchTerm})
   }
 
+  changeHandler = (e) => {
+    e.preventDefault()
+    this.setState({ zipcode: e.target.value })
+  }
+
+  locator = () =>{
+    alert('This is locator helper won\'t save or share your location. Your info are protected!')
+    fetch('https://freegeoip.app/json/')
+    .then(resp => resp.json())
+    .then(result =>{
+      this.setState({
+        zipcode: result.zip_code
+      })
+    })
+  }
+
   render(){
     return (
       <Router>
@@ -88,12 +111,17 @@ updateEditedItem = editeditem=>{
           <Navbar
             searchHandler={this.searchHandler}
             clickFilterHandler={this.clickFilterHandler}
-            searchterm={this.state.searchterm}/>
+            searchterm={this.state.searchterm}
+            locator={this.locator}
+            changeHandler={this.changeHandler}
+            zipcode={this.state.zipcode}
+            />
           <Route exact path="/" render={()=>
               <Homepage
                 allItems={this.state.items}
                 items={this.filterItem()}
                 searchterm={this.state.searchterm}
+                zipcode={this.state.zipcode}
                 deleteItemHandler={this.deleteItemHandler}/>}/>
           <Route exact path="/signup" render={()=> (this.props.user.id!==undefined? <Redirect to="/"/>:<Signup/>)}/>
           <Route path="/login" render={()=>(this.props.loggedin? <Redirect to="/"/>:<Login/>)}/>

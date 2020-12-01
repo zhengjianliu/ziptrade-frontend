@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import menu from '../images/menu.png'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
+import Locator from '../images/locator.png'
 
 class Navbar extends Component{
   state={
@@ -32,13 +33,19 @@ class Navbar extends Component{
 
         <div className="rightside">
           {this.props.loggedin?<NavLink to="/account">Account</NavLink>:null}
-          {this.props.loggedin?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:<NavLink to="/login">Login</NavLink>}
+          {this.props.loggedin?<NavLink to="/" onClick={this.logoutHandler}>Logout</NavLink>:null}
         </div>
 
-        <div className="burgermenu" onClick={this.clickHandler}>
-          <img src={menu} alt="menu icon"/>
+
+          {this.props.loggedin?
+            <div className="burgermenu" onClick={this.clickHandler}>
+              <img src={menu} alt="menu icon"/>
+            </div>
+            :
+              <NavLink to="/login">Login</NavLink>
+            }
         </div>
-      </div>
+
 
       <div className={this.state.open? "menu open": "menu" } onClick={this.clickHandler}>
         {this.props.loggedin?<NavLink to="/account">Account</NavLink>:null}
@@ -47,12 +54,21 @@ class Navbar extends Component{
       </div>
       <button id="filterbutton" onClick={this.filterHandler}>Filter {this.state.openfilter?"<":">"}</button>
       <div id="secondnav" className={this.state.openfilter?"on":null}>
-        <div className="filtername">Condition: </div>
+        <div className="secondnavcontainer">
+        <div className="secondnavleft">
         <button id="inputbutton" className={this.props.searchterm === ""? "active":null} onClick={e=>this.props.clickFilterHandler("")}>ALL</button>
         <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "NEW"? "active":null} onClick={e=>this.props.clickFilterHandler("new")}>NEW</button>
         <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "MINT"? "active":null} onClick={e=>this.props.clickFilterHandler("mint")}>MINT</button>
         <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "GOOD"? "active":null} onClick={e=>this.props.clickFilterHandler("good")}>GOOD</button>
         <button id="inputbutton" className={this.props.searchterm.toUpperCase() === "FAIR"? "active":null} onClick={e=>this.props.clickFilterHandler("fair")}>FAIR</button>
+        </div>
+        <div className="secondnavright">
+          <img className="locator" src={Locator} onClick={this.props.locator}/>
+          <form onSubmit={(e)=>{ e.preventDefault()}}>
+            <input value={this.props.zipcode}  maxlength="5" placeholder="ZIPCODE" onChange={this.props.changeHandler}/>
+          </form>
+        </div>
+      </div>
       </div>
       </div>
     )

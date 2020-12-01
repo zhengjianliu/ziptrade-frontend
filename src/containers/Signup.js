@@ -74,7 +74,7 @@ class Signup extends React.Component{
                     <input type="text" name="address" placeholder="address" value={this.state.address} onChange={this.changeHandler} required/>
                     <input type="text" id="city" name="city" placeholder="city" value={this.state.city} onChange={this.changeHandler} required/>
                     <input type="text" id="zipcode" name="zipcode" placeholder="zipcode" value={this.state.zipcode} onChange={this.changeHandler} required/>
-                    <img className="locator"src={Locator} onClick={this.locator} alt="location helper"/>
+                    <img className="locator" src={Locator} onClick={this.locator} alt="location helper"/>
                     <input type="phone" name="phone"  pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="phone format 1234567890" value={this.state.phone} onChange={this.changeHandler} required/>
                     <input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required/>
                     <button className="loginbutton" type="submit">Register</button>
