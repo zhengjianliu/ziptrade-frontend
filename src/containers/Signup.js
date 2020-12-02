@@ -45,7 +45,6 @@ class Signup extends React.Component{
         })
         .then(resp=>resp.json())
         .then(data=>{
-          if(data.user.id!==undefined){
             this.props.userLogin(data)
             this.setState({
               username: "",
@@ -57,9 +56,6 @@ class Signup extends React.Component{
               phone:"",
               email:""
             })
-          }else{
-            console.log('failed to register')
-          }
         })
       }
 
