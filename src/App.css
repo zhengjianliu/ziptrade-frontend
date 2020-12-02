@@ -18,6 +18,21 @@
 a{
   text-decoration: none;
 }
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0,0.4);
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
 /*Navbar*/
 
 .wholenavbar{
@@ -58,20 +73,6 @@ a{
 
 .leftside img{
   height: 45px;
-  animation: rotating 20s infinite;
-  transition: .5s;
-}
-
-@keyframes rotating{
-  0%{
-    transform:rotate(0deg);
-  }
-  50%{
-    transform:rotate(-360deg);
-  }
-  100%{
-    transform:rotate(-720deg);
-  }
 }
 
 
@@ -132,7 +133,7 @@ a{
 #secondnav{
   width: 100%;
   transform: translateX(-100%);
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.75);
   margin-top: -30px;
   padding-top: 10px;
   opacity: 0;
@@ -177,7 +178,7 @@ a{
   line-height: 0.3;
   font-size: 13pt;
   font-weight: 700;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.71);
   padding: 10px;
   color: grey;
   border-radius: 20px;
@@ -240,18 +241,20 @@ a{
   margin: 10px;
   width: 200px;
   float: left;
-  background-color: white;
   border-radius: 20px;
   cursor: pointer;
   transition:.5s;
+  background-color: rgba(255, 255, 255, 0.48);
 }
 .item:hover{
-  background-color: rgb(228, 228, 228);
+  background-color: rgba(228, 228, 228, 0.48);
+
 }
 
-.item h3,.item h2,.item h5{
-  margin-top: 4px;
-  margin-bottom: 4px;
+
+.item h3,.item h2,.item h4{
+  margin-top: 10px;
+  margin-bottom: 7px;
   padding: 0;
 }
 
@@ -386,7 +389,7 @@ a{
   width: 300px;
   height: 260px;
   position: fixed;
-  top: 30vh;
+  top: 25vh;
 }
 
 .logincontainer h3{
@@ -398,7 +401,8 @@ a{
 }
 
 .logincontainer input{
-  background-color: rgba(213, 213, 213, 0.714);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid lightgrey;
   width: 80%;
   margin: auto;
   margin-bottom: 20px;
@@ -465,13 +469,12 @@ a{
 }
 
 .accountleftside{
-  background-color:white;
-  width: 36%;
+  background-color:rgba(255, 255, 255, 0.5);
+  width: 40%;
   height: auto;
   text-align: left;
   padding-top: 40px;
   padding-left: 4%;
-  margin-right: 4%;
 }
 
 .accountleftside h3{
@@ -502,12 +505,16 @@ a{
 }
 
 .accountrightside{
-  background-color: white;
+  background-color:rgba(255, 255, 255, 0.5);
   height: 100%;
   right:0;
   width: 60%;
   overflow: scroll;
   box-shadow: -1px 29px 20px 1px rgba(0, 0, 0, 0.432);
+}
+
+.accountrightside::-webkit-scrollbar {
+    width: 0px;
 }
 
 .accountrightside::-webkit-scrollbar{
@@ -576,7 +583,7 @@ a{
 /* edit use form */
 
 .edituserform{
-  background-color: rgb(252, 252, 252);
+  background-color: rgba(255, 255, 255, 0.3);
   padding-bottom:250px;
   padding-left: 20px;
   padding-right: 20px;
@@ -696,6 +703,10 @@ a{
   overflow: scroll;
 }
 
+.fullleftside::-webkit-scrollbar {
+    width: 0px;
+}
+
 #fullshowpage .fullleftside::-webkit-scrollbar{
   scroll-behavior: smooth;
 }
@@ -712,7 +723,9 @@ a{
   font-size: 17pt;
   overflow: scroll;
 }
-
+.fullshowpage::-webkit-scrollbar {
+    width: 0px;
+}
 #fullshowpage .fullrightside::-webkit-scrollbar{
   scroll-behavior: smooth;
 }
@@ -1031,6 +1044,10 @@ hr{
     align-items: center;
     z-index: 1000000000;
   }
+
+  #fullshowpage::-webkit-scrollbar {
+      width: 0px;
+  }
   #fullshowpage::-webkit-scrollbar{
     scroll-behavior: smooth;
   }
@@ -1082,6 +1099,12 @@ hr{
     border-radius: 0;
     display: flex;
     transition:.5s;
+  }
+
+  .item h3,.item h2,.item h4{
+    margin-top: 20px;
+    margin-bottom: 7px;
+    padding: 0;
   }
   .item .itemimage{
     width: 180px;

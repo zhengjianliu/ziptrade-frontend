@@ -48,3 +48,17 @@
     opacity: 0;
     transition: 0.3s ease-out 0.1s;
 }
+
+
+.background{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: antiquewhite;
+  filter: blur(0px);
+  background-image: url("https://www.fg-a.com/wallpapers/white-marble-1-2018.jpg");
+  background-size: cover;
+  z-index: -1;
+}

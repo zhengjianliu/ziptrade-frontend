@@ -109,6 +109,7 @@ updateEditedItem = editeditem=>{
       <Router>
         {this.checkinguser()}
         <div className="App">
+          <div className="background"></div>
           <Navbar
             searchHandler={this.searchHandler}
             clickFilterHandler={this.clickFilterHandler}
