@@ -2,7 +2,7 @@ import './App.css';
 import React, {Component} from 'react'
 import Navbar from './containers/Navbar'
 import Homepage from './containers/Homepage'
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route,Switch} from 'react-router-dom';
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import {connect} from 'react-redux'
@@ -10,6 +10,7 @@ import Account from './containers/Account'
 import Newlisting from './containers/Newlisting'
 import EditAccount from './containers/EditAccount'
 import EditListing from './containers/EditListing'
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 class App extends Component{
   state={
@@ -116,6 +117,10 @@ updateEditedItem = editeditem=>{
             changeHandler={this.changeHandler}
             zipcode={this.state.zipcode}
             />
+          <Route render={({location})=>(
+          <TransitionGroup>
+          <CSSTransition timeout={500} classNames="fade" key={location.key}>
+            <Switch location={location}>
           <Route exact path="/" render={()=>
               <Homepage
                 allItems={this.state.items}
@@ -134,6 +139,10 @@ updateEditedItem = editeditem=>{
           <Route path="/newlisting" render={()=> <Newlisting updateItems={this.updateItems}/>}/>
           <Route exact path="/editaccount" render={()=> (<EditAccount/>)}/>
           <Route exact path="/editlisting" render={()=> (<EditListing updateEditedItem={this.updateEditedItem}/>)}/>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+          )}/>
         </div>
       </Router>
     );
