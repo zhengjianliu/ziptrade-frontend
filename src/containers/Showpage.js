@@ -118,6 +118,7 @@ class Showpage extends React.Component{
                         <h2>Seller's Info:</h2>
                         <hr/>
                         <h3>Seller's Name: {this.props.currentItem.owner.fullname}</h3>
+                        <h3>Zipcode:{this.props.currentItem.owner.zipcode}</h3>
                         <h3>Contact Info: </h3>
                         {this.props.currentItem.owner.displayphone?<h4>Phone: {this.props.currentItem.owner.phone}</h4>:null}
                         <h4>Email: {this.props.currentItem.owner.email}</h4>
