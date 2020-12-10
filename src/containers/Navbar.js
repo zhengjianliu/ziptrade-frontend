@@ -7,8 +7,7 @@ import Account from '../images/account.png'
 import Loggin from '../images/loggin.png'
 import Logout from '../images/logout.png'
 import Home from '../images/home.png'
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { Switch, Route } from 'react-router-dom';
 class Navbar extends Component{
   state={
     open: false,
@@ -58,9 +57,9 @@ class Navbar extends Component{
       </div>
       </div>
 
-      <Router>
-        <Route path="/" exact render={()=>(
-            <>
+      <Switch>
+        <Route exact path="/" render={()=>
+          <>
             <button id="filterbutton" onClick={this.filterHandler}>Filter {this.state.openfilter?"X":">"}</button>
             <div id="secondnav" className={this.state.openfilter?"on":null}>
               <div className="secondnavcontainer">
@@ -79,9 +78,11 @@ class Navbar extends Component{
               </div>
             </div>
             </div>
-            </>
-          )}/>
-      </Router>
+          </>
+          }/>
+
+      </Switch>
+
       </div>
     )
   }
