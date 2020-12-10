@@ -80,6 +80,10 @@ class Signup extends React.Component{
         )
     }
 }
+
+
+
+
 const mdp = dispatch =>{
   return{
     userLogin: user => dispatch({type:'USER_LOGIN', payload: user})
