@@ -23,7 +23,7 @@ class Showpage extends React.Component{
           item_id: item.id
         })
       }
-      fetch('http://localhost:3000/favorites',options)
+      fetch(' https://zip-trade-api.herokuapp.com/favorites',options)
       .then(resp=>resp.json())
       .then(data=>{
         this.props.likeItem(data)
@@ -36,7 +36,7 @@ class Showpage extends React.Component{
       const options = {
         method: 'DELETE'
       }
-      fetch(`http://localhost:3000/favorites/${favor.id}`,options)
+      fetch(` https://zip-trade-api.herokuapp.com/favorites/${favor.id}`,options)
       .then(resp=>resp.json())
       .then(data=>{
         this.props.unlike(data)

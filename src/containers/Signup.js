@@ -35,7 +35,7 @@ class Signup extends React.Component{
         this.signupHandler(this.state)
       }
       signupHandler = (newUserInfo) =>{
-        fetch("http://localhost:3000/users",{
+        fetch(" https://zip-trade-api.herokuapp.com/users",{
           method: "POST",
           headers:{
             accepts: "application/json",

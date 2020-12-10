@@ -21,7 +21,7 @@ class App extends Component{
 }
 
   componentDidMount(){
-      fetch('http://localhost:3000/items')
+      fetch(' https://zip-trade-api.herokuapp.com/items')
       .then(resp => resp.json())
       .then(data=>this.setState({items:data}))
   }
@@ -76,7 +76,7 @@ updateEditedItem = editeditem=>{
     const options = {
       method: 'DELETE'
     }
-    fetch(`http://localhost:3000/items/${deleteditem.id}`,options)
+    fetch(` https://zip-trade-api.herokuapp.com/items/${deleteditem.id}`,options)
     .then(resp=>resp.json())
     .then(item=>{
       this.props.deleteItem(item)

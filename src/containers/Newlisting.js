@@ -43,7 +43,7 @@ class Newlisting extends Component{
                 images: this.state.images
             })
         }
-        fetch('http://localhost:3000/items',options)
+        fetch('https://zip-trade-api.herokuapp.com/items',options)
         .then(resp=>resp.json())
         .then(newlisting=>{
             this.props.updateItems(newlisting)

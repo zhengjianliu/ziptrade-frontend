@@ -46,7 +46,7 @@ class EditListing extends Component{
                 images: this.state.images,
             })
         }
-        fetch(`http://localhost:3000/items/${this.props.currentItem.id}`,options)
+        fetch(`https://zip-trade-api.herokuapp.com/items/${this.props.currentItem.id}`,options)
         .then(resp=>resp.json())
         .then(newlisting=>{
             this.props.updateEditedItem(newlisting)

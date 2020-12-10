@@ -62,7 +62,7 @@ class EditAccount extends React.Component{
               }
           })
         }
-        fetch(`http://localhost:3000/users/${this.props.user.id}`,options)
+        fetch(`https://zip-trade-api.herokuapp.com/users/${this.props.user.id}`,options)
         .then(resp=>resp.json())
         .then(updatedInfo=>{
           this.props.updateInfo(updatedInfo)
