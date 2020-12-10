@@ -43,7 +43,6 @@ body::-webkit-scrollbar-thumb {
 }
 .navbarcontainer{
   position: fixed;
-  z-index: 10000001;
   width: 100%;
   top:0;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);

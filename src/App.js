@@ -11,6 +11,7 @@ import Newlisting from './containers/Newlisting'
 import EditAccount from './containers/EditAccount'
 import EditListing from './containers/EditListing'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import Loader from './components/Loader'
 
 class App extends Component{
   state={
@@ -76,7 +77,7 @@ updateEditedItem = editeditem=>{
     const options = {
       method: 'DELETE'
     }
-    fetch(` https://zip-trade-api.herokuapp.com/items/${deleteditem.id}`,options)
+    fetch(`https://zip-trade-api.herokuapp.com/items/${deleteditem.id}`,options)
     .then(resp=>resp.json())
     .then(item=>{
       this.props.deleteItem(item)
@@ -104,10 +105,19 @@ updateEditedItem = editeditem=>{
     })
   }
 
+  renderLoader = () => {
+    if (this.state.items.length === 0) {
+      if (this.state.searchterm === "" && this.state.zipcode === "") {
+        return <Loader/>
+      }
+    }
+  }
+
   render(){
     return (
       <Router>
         {this.checkinguser()}
+        {this.renderLoader()}
         <div className="App">
           <div className="background"></div>
           <Navbar

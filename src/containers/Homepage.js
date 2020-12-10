@@ -1,5 +1,4 @@
 import React from 'react'
-import Loader from '../components/Loader'
 import ItemCategory from '../components/ItemCategory'
 import Showpage from './Showpage'
 
@@ -50,24 +49,23 @@ class Homepage extends React.Component {
       fullscreen: !this.state.fullscreen
     })
   }
-  renderLoader = () => {
-    if (this.props.items.length === 0) {
-      if (this.props.searchterm === "" && this.props.zipcode === "") {
-        return <Loader/>
-      }
-    }
-  }
 
   render() {
     return (<section>
       <div className="homepage">
-        {this.renderLoader()}
         <div className="pad"></div>
         {this.renderCategory()}
       </div>
-
-      <Showpage allItems={this.props.allItems} currentItem={this.state.currentItem} show={this.state.show} fullscreen={this.state.fullscreen} fullscreenHandler={this.fullscreenHandler} closeHandler={this.closeHandler} clickHandler={this.clickHandler} deleteItemHandler={this.props.deleteItemHandler}/>
-
+      <Showpage
+        allItems={this.props.allItems}
+        currentItem={this.state.currentItem}
+        show={this.state.show}
+        fullscreen={this.state.fullscreen}
+        fullscreenHandler={this.fullscreenHandler}
+        closeHandler={this.closeHandler}
+        clickHandler={this.clickHandler}
+        deleteItemHandler={this.props.deleteItemHandler}
+        />
     </section>)
   }
 }
