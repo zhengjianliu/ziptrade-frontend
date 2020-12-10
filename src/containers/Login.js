@@ -26,7 +26,7 @@ class Login extends React.Component{
           },
           body: JSON.stringify({user: userInfo})
         }
-        fetch(" https://zip-trade-api.herokuapp.com/login",options)
+        fetch("https://zip-trade-api.herokuapp.com/login",options)
         .then(resp=>resp.json())
         .then(data=>{
           if(data.user){

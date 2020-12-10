@@ -21,7 +21,7 @@ class App extends Component{
 }
 
   componentDidMount(){
-      fetch(' https://zip-trade-api.herokuapp.com/items')
+      fetch('https://zip-trade-api.herokuapp.com/items')
       .then(resp => resp.json())
       .then(data=>this.setState({items:data}))
   }

@@ -36,7 +36,7 @@ class Showpage extends React.Component{
       const options = {
         method: 'DELETE'
       }
-      fetch(` https://zip-trade-api.herokuapp.com/favorites/${favor.id}`,options)
+      fetch(`https://zip-trade-api.herokuapp.com/favorites/${favor.id}`,options)
       .then(resp=>resp.json())
       .then(data=>{
         this.props.unlike(data)
