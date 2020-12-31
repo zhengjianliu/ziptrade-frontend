@@ -5,8 +5,6 @@
 
 ### 🏠 [Frontend](https://ziptrade.netlify.app/) | [Backend](https://github.com/zhengjianliu/ziptrade-backend)
 
--   Backend: https://github.com/gabrielhicks/tutorial_heaven_api/
-
 ## Author
 
 👤 **ZHENGJIAN(JAY) LIU**
