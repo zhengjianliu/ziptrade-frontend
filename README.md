@@ -1,9 +1,9 @@
-<h1 align="center" color="skyblue">Welcome to Zip Trade</h1>
+<h1 align="center" color="lightgrey">Welcome to Zip Trade</h1>
 
 
 > A React / Redux / Ruby on Rails marketing web application
 
-### 🏠 [Frontend](https://ziptrade.netlify.app/) | [Backend](https://github.com/zhengjianliu/ziptrade-backend)
+### 🏠 [LiveDemo](https://ziptrade.netlify.app/) | [Frontend](https://github.com/zhengjianliu/ziptrade-frontend) | [Backend](https://github.com/zhengjianliu/ziptrade-backend)
 
 ## Author
 
