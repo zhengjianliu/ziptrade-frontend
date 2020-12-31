@@ -1,4 +1,4 @@
-<h1 align="center" color="lightgrey">Welcome to Zip Trade</h1>
+<h1 align="center" color="lightgrey">👋Welcome to Zip Trade</h1>
 
 
 > A React / Redux / Ruby on Rails marketing web application
