@@ -10,6 +10,8 @@
 👤 **ZHENGJIAN(JAY) LIU**
 
 -   Github: [@ZHENGJIANLIU](https://github.com/zhengjianliu)
+-   Linkedin [@Linkedin](https://www.linkedin.com/in/zhengjian-jay-liu-33776553/)
+-   Website [@website](https://www.zhengjianliu.com)
 
 ## Show your support
 
